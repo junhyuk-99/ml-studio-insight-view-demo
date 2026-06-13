@@ -1,0 +1,14 @@
+[
+  {
+    "algoId": "DEMO-ALGO-IFOREST",
+    "algoName": "Isolation Forest",
+    "category": "anomaly_detection",
+    "enabled": true
+  },
+  {
+    "algoId": "DEMO-ALGO-RF",
+    "algoName": "Random Forest",
+    "category": "supervised_learning",
+    "enabled": true
+  }
+]

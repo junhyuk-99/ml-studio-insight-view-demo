@@ -1,0 +1,26 @@
+[
+  {
+    "datasetId": "DEMO_DATASET_001",
+    "sourceName": "Demo Equipment Telemetry",
+    "mcId": "DEMO-MC-001",
+    "eventTime": "2026-01-15T09:00:00Z",
+    "temperature": 72.4,
+    "pressure": 2.18,
+    "cycleTimeSec": 48.2,
+    "opStatus": "RUN",
+    "lotNo": "DEMO-LOT-001",
+    "partNo": "DEMO-PART-001"
+  },
+  {
+    "datasetId": "DEMO_DATASET_001",
+    "sourceName": "Demo Equipment Telemetry",
+    "mcId": "DEMO-MC-002",
+    "eventTime": "2026-01-15T09:01:00Z",
+    "temperature": 68.9,
+    "pressure": 2.05,
+    "cycleTimeSec": 51.7,
+    "opStatus": "RUN",
+    "lotNo": "DEMO-LOT-001",
+    "partNo": "DEMO-PART-001"
+  }
+]

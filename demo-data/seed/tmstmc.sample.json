@@ -1,0 +1,23 @@
+[
+  {
+    "mcId": "DEMO-MC-001",
+    "mcName": "Demo Mixer 001",
+    "siteName": "Demo Manufacturing Site",
+    "lineName": "Demo Line A",
+    "useYn": "Y"
+  },
+  {
+    "mcId": "DEMO-MC-002",
+    "mcName": "Demo Press 002",
+    "siteName": "Demo Manufacturing Site",
+    "lineName": "Demo Line A",
+    "useYn": "Y"
+  },
+  {
+    "mcId": "DEMO-MC-003",
+    "mcName": "Demo Oven 003",
+    "siteName": "Demo Manufacturing Site",
+    "lineName": "Demo Line B",
+    "useYn": "Y"
+  }
+]

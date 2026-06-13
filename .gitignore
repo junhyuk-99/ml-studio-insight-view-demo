@@ -1,0 +1,53 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+
+# Node / React
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# Java / Spring
+build/
+bin/
+.gradle/
+target/
+*.jar
+*.war
+*.class
+
+# Python
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+*.pyc
+*.pyo
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs / temp / data dumps
+logs/
+*.log
+*.tmp
+*.bak
+*.dump
+*.sql
+*.sqlite
+*.db
+*.csv
+*.xlsx
+*.xls
+*.zip
+*.7z
+*.rar

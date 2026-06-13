@@ -1,0 +1,14 @@
+[
+  {
+    "runId": "DEMO_RUN_001",
+    "datasetId": "DEMO_DATASET_001",
+    "algorithm": "Random Forest",
+    "target": "demoQualityClass",
+    "accuracy": 0.94,
+    "f1Score": 0.91,
+    "featureImportance": [
+      { "field": "temperatureMean", "importance": 0.42 },
+      { "field": "cycleTimeMean", "importance": 0.28 }
+    ]
+  }
+]

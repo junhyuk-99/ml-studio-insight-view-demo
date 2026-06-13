@@ -1,0 +1,13 @@
+[
+  {
+    "alertId": "DEMO-ALM-001",
+    "mcId": "DEMO-MC-001",
+    "field": "temperature",
+    "operator": ">",
+    "threshold": 75,
+    "observedValue": 77.3,
+    "severity": "WARN",
+    "status": "OPEN",
+    "eventTime": "2026-01-15T09:12:00Z"
+  }
+]

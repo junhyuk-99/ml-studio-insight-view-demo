@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">ML Studio Demo logo</title>
+  <desc id="desc">Abstract demo logo for a machine learning analytics dashboard.</desc>
+  <rect width="160" height="160" rx="36" fill="#172554"/>
+  <path d="M34 104V56h14l14 22 14-22h14v48H75V78L64 96h-4L49 78v26H34Z" fill="#f8fafc"/>
+  <path d="M98 104V56h14v36h24v12H98Z" fill="#38bdf8"/>
+  <circle cx="118" cy="42" r="8" fill="#f59e0b"/>
+</svg>

@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: ml-studio-api
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/demo_ml_studio_db}
+      
+  lifecycle:
+    timeout-per-shutdown-phase: 10s
+
+server:
+  port: ${SERVER_PORT:8090}
+  shutdown: graceful
+
+app:
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3100}
+  ai-server:
+    base-url: ${AI_SERVER_URL:http://localhost:8001}
+    execute-path: ${APP_AI_SERVER_EXECUTE_PATH:/api/model/execute/isolation-forest}
+    autoencoder-execute-path: ${APP_AI_SERVER_AUTOENCODER_EXECUTE_PATH:/api/model/execute/autoencoder}
+    random-forest-execute-path: ${APP_AI_SERVER_RANDOM_FOREST_EXECUTE_PATH:/api/model/execute/random-forest}
+  data-exploration:
+    collection-approval-check-enabled: false
+  modeltrain:
+    auto:
+      enabled: ${APP_MODELTRAIN_AUTO_ENABLED:true}
+      fixed-delay-ms: ${APP_MODELTRAIN_AUTO_FIXED_DELAY_MS:300000}
+      initial-delay-ms: ${APP_MODELTRAIN_AUTO_INITIAL_DELAY_MS:60000}
+      default-scheduler-interval-sec: ${APP_MODELTRAIN_AUTO_DEFAULT_SCHEDULER_INTERVAL_SEC:600}
+      default-min-new-feature-count: ${APP_MODELTRAIN_AUTO_DEFAULT_MIN_NEW_FEATURE_COUNT:50}
+      default-min-total-feature-count: ${APP_MODELTRAIN_AUTO_DEFAULT_MIN_TOTAL_FEATURE_COUNT:200}
+    supervised:
+      default-sample-limit: ${APP_MODELTRAIN_SUPERVISED_DEFAULT_SAMPLE_LIMIT:50000}
+  anomaly-cause:
+    scheduler:
+      enabled: ${APP_ANOMALY_CAUSE_SCHEDULER_ENABLED:true}
+      fixed-delay-ms: ${APP_ANOMALY_CAUSE_SCHEDULER_FIXED_DELAY_MS:600000}
+      initial-delay-ms: ${APP_ANOMALY_CAUSE_SCHEDULER_INITIAL_DELAY_MS:120000}
+      batch-size: ${APP_ANOMALY_CAUSE_SCHEDULER_BATCH_SIZE:200}
+  threshold-alert:
+    scheduler:
+      enabled: ${APP_THRESHOLD_ALERT_SCHEDULER_ENABLED:true}
+      fixed-delay-ms: ${APP_THRESHOLD_ALERT_SCHEDULER_FIXED_DELAY_MS:600000}
+      initial-delay-ms: ${APP_THRESHOLD_ALERT_SCHEDULER_INITIAL_DELAY_MS:180000}
+      batch-size: ${APP_THRESHOLD_ALERT_SCHEDULER_BATCH_SIZE:200}
+  preprocess:
+    feature-auto:
+      enabled: ${APP_PREPROCESS_FEATURE_AUTO_ENABLED:true}
+      fixed-delay-ms: ${APP_PREPROCESS_FEATURE_AUTO_FIXED_DELAY_MS:300000}
+      initial-delay-ms: ${APP_PREPROCESS_FEATURE_AUTO_INITIAL_DELAY_MS:60000}
+      max-raw-batch-size: ${APP_PREPROCESS_FEATURE_AUTO_MAX_RAW_BATCH_SIZE:5000}
+      default-window-size: ${APP_PREPROCESS_FEATURE_AUTO_DEFAULT_WINDOW_SIZE:100}
+      default-target-collection: ${APP_PREPROCESS_FEATURE_AUTO_DEFAULT_TARGET_COLLECTION:thisfeature}

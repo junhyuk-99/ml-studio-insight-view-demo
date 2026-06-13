@@ -1,0 +1,4 @@
+node_modules
+.vite-dev.log
+.vite-dev.err
+dist/
