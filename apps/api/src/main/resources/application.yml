@@ -25,7 +25,7 @@ app:
     collection-approval-check-enabled: false
   modeltrain:
     auto:
-      enabled: ${APP_MODELTRAIN_AUTO_ENABLED:true}
+      enabled: ${APP_MODELTRAIN_AUTO_ENABLED:false}
       fixed-delay-ms: ${APP_MODELTRAIN_AUTO_FIXED_DELAY_MS:300000}
       initial-delay-ms: ${APP_MODELTRAIN_AUTO_INITIAL_DELAY_MS:60000}
       default-scheduler-interval-sec: ${APP_MODELTRAIN_AUTO_DEFAULT_SCHEDULER_INTERVAL_SEC:600}
@@ -35,19 +35,19 @@ app:
       default-sample-limit: ${APP_MODELTRAIN_SUPERVISED_DEFAULT_SAMPLE_LIMIT:50000}
   anomaly-cause:
     scheduler:
-      enabled: ${APP_ANOMALY_CAUSE_SCHEDULER_ENABLED:true}
+      enabled: ${APP_ANOMALY_CAUSE_SCHEDULER_ENABLED:false}
       fixed-delay-ms: ${APP_ANOMALY_CAUSE_SCHEDULER_FIXED_DELAY_MS:600000}
       initial-delay-ms: ${APP_ANOMALY_CAUSE_SCHEDULER_INITIAL_DELAY_MS:120000}
       batch-size: ${APP_ANOMALY_CAUSE_SCHEDULER_BATCH_SIZE:200}
   threshold-alert:
     scheduler:
-      enabled: ${APP_THRESHOLD_ALERT_SCHEDULER_ENABLED:true}
+      enabled: ${APP_THRESHOLD_ALERT_SCHEDULER_ENABLED:false}
       fixed-delay-ms: ${APP_THRESHOLD_ALERT_SCHEDULER_FIXED_DELAY_MS:600000}
       initial-delay-ms: ${APP_THRESHOLD_ALERT_SCHEDULER_INITIAL_DELAY_MS:180000}
       batch-size: ${APP_THRESHOLD_ALERT_SCHEDULER_BATCH_SIZE:200}
   preprocess:
     feature-auto:
-      enabled: ${APP_PREPROCESS_FEATURE_AUTO_ENABLED:true}
+      enabled: ${APP_PREPROCESS_FEATURE_AUTO_ENABLED:false}
       fixed-delay-ms: ${APP_PREPROCESS_FEATURE_AUTO_FIXED_DELAY_MS:300000}
       initial-delay-ms: ${APP_PREPROCESS_FEATURE_AUTO_INITIAL_DELAY_MS:60000}
       max-raw-batch-size: ${APP_PREPROCESS_FEATURE_AUTO_MAX_RAW_BATCH_SIZE:5000}

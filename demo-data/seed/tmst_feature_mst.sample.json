@@ -1,0 +1,29 @@
+[
+  {
+    "featureCode": "DEMO-FEATURE-001",
+    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
+    "fieldName": "furnace_temp",
+    "displayName": "Furnace Temperature",
+    "dataType": "number",
+    "unit": "C",
+    "enabled": true
+  },
+  {
+    "featureCode": "DEMO-FEATURE-002",
+    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
+    "fieldName": "vibration_rms",
+    "displayName": "Vibration RMS",
+    "dataType": "number",
+    "unit": "g",
+    "enabled": true
+  },
+  {
+    "featureCode": "DEMO-FEATURE-003",
+    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
+    "fieldName": "motor_current",
+    "displayName": "Motor Current",
+    "dataType": "number",
+    "unit": "A",
+    "enabled": true
+  }
+]

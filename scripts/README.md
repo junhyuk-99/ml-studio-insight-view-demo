@@ -1,5 +1,20 @@
 # Scripts
 
-This folder is reserved for demo setup and validation helpers.
+Demo-only helper scripts for local setup and public safety checks.
 
-No production credentials, real data importers, or deployment scripts are included in this public demo repository.
+## Seed Data
+
+```bash
+python scripts/seed-demo-data.py --dry-run
+python scripts/seed-demo-data.py --uri mongodb://localhost:27017 --db ml_studio_demo
+```
+
+The loader reads `demo-data/seed/*.sample.json`. If `pymongo` is not installed, it prints install guidance and exits without failing.
+
+## Public Safety Scan
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/scan-public-safety.ps1
+```
+
+The scan reports file names and line numbers only. It avoids printing matched secret-like values.

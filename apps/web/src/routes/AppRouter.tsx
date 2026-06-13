@@ -17,6 +17,7 @@ export function AppRouter() {
 
         <Route element={<ProtectedRoute />}>
           <Route element={<MainLayout />}>
+            <Route path="data-exploration" element={<Navigate to="/data-exploration/timeseries" replace />} />
             {PROTECTED_ROUTE_DEFINITIONS.map((route) =>
               route.index ? (
                 <Route key={route.id} index element={<RoleRoute element={route.element} allowedRoles={route.allowedRoles} />} />

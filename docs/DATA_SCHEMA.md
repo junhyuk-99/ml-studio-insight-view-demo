@@ -1,20 +1,30 @@
 # Data Schema
 
-The demo uses MongoDB collections that mirror an ML analytics workflow. Collection names below are public demo names only.
+All seed files live under `demo-data/seed` and contain synthetic JSON.
 
-## Collections
+| Seed file | Collection role |
+| --- | --- |
+| `tmstmc.sample.json` | Demo equipment master for `DEMO-MC-001` through `DEMO-MC-003` |
+| `thishmidata.sample.json` | Synthetic HMI/time-series telemetry |
+| `tmst_dataset_config.sample.json` | Dataset configuration for `DEMO_DATASET_MANUFACTURING_AI` |
+| `tmst_feature_mst.sample.json` | Feature metadata |
+| `tmst_model_policy.sample.json` | Model training policy examples |
+| `tmst_algo_mst.sample.json` | Algorithm catalog |
+| `thisfeature.sample.json` | Generated feature windows |
+| `thismodelrun.sample.json` | Model run history |
+| `thisanomalyresult.sample.json` | Isolation Forest anomaly outputs |
+| `thisthresholdalert.sample.json` | Threshold alert events |
+| `thisclassificationresult.sample.json` | Random Forest classification outputs |
+| `thismodeleval.sample.json` | Evaluation metrics |
 
-- `tmstmc`: demo equipment master records with `mcId`, `mcName`, `siteName`, and `lineName`.
-- `thishmidata`: synthetic HMI telemetry with timestamps, equipment IDs, status, and numeric sensor fields.
-- `thisfeature`: generated feature windows with aggregate statistics.
-- `thisanomalyresult`: anomaly model outputs with scores and top contributing signals.
-- `thisclassificationresult`: supervised learning metrics and feature importance.
-- `thisthresholdalert`: threshold alert events and acknowledgement status.
-- `tmst_algo_mst`: demo algorithm catalog.
-- `tmst_model_policy`: model training policy examples.
+## Main Demo Fields
+
+- Equipment: `mcId`, `mcName`, `siteName`, `lineName`
+- Dataset: `datasetId`, `datasetName`, `sourceCollection`, `targetFeatureCollection`
+- Telemetry: `eventTime`, `furnace_temp`, `motor_current`, `vibration_rms`, `pressure`, `gas_flow`, `cycle_time`, `op_status`
+- Production-like identifiers: `DEMO-LOT-001`, `DEMO-PART-001`
+- Runs: `DEMO-RUN-IF-001`, `DEMO-RUN-RF-001`
 
 ## Field Policy
 
-All identifiers must use demo-safe values such as `DEMO-MC-001`, `DEMO_DATASET_001`, `DEMO_RUN_001`, `DEMO_USER`, `DEMO-LOT-001`, and `DEMO-PART-001`.
-
-Do not use real operation database names, customer names, facility names, equipment names, operator IDs, product serials, lot numbers, IP addresses, or credentials in this repository.
+Do not add real customer names, facility names, equipment names, lot numbers, part numbers, operator IDs, IP addresses, credentials, internal URLs, or operation logs.

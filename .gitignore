@@ -21,6 +21,8 @@ target/
 *.jar
 *.war
 *.class
+*.joblib
+*.pkl
 
 # Python
 __pycache__/
@@ -51,3 +53,6 @@ logs/
 *.zip
 *.7z
 *.rar
+
+# Keep Gradle wrapper executable for reproducible API builds
+!apps/api/gradle/wrapper/gradle-wrapper.jar

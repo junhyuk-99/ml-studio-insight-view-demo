@@ -1,10 +1,10 @@
 [
   {
     "policyId": "DEMO-POLICY-001",
-    "datasetId": "DEMO_DATASET_001",
+    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
     "algorithm": "Isolation Forest",
     "schedule": "manual",
     "minNewFeatureCount": 50,
-    "createdBy": "DEMO_USER"
+    "createdBy": "DEMO-USER-ANALYST"
   }
 ]

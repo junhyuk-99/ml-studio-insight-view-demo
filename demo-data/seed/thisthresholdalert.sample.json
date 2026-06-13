@@ -2,12 +2,13 @@
   {
     "alertId": "DEMO-ALM-001",
     "mcId": "DEMO-MC-001",
-    "field": "temperature",
+    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
+    "field": "furnace_temp",
     "operator": ">",
-    "threshold": 75,
-    "observedValue": 77.3,
+    "threshold": 760,
+    "observedValue": 772.3,
     "severity": "WARN",
     "status": "OPEN",
-    "eventTime": "2026-01-15T09:12:00Z"
+    "eventTime": "2026-06-10T09:12:00Z"
   }
 ]

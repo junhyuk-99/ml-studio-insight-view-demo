@@ -1,14 +1,14 @@
 [
   {
-    "runId": "DEMO_RUN_001",
-    "datasetId": "DEMO_DATASET_001",
+    "runId": "DEMO-RUN-RF-001",
+    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
     "algorithm": "Random Forest",
     "target": "demoQualityClass",
     "accuracy": 0.94,
     "f1Score": 0.91,
     "featureImportance": [
-      { "field": "temperatureMean", "importance": 0.42 },
-      { "field": "cycleTimeMean", "importance": 0.28 }
+      { "field": "furnace_temp", "importance": 0.42 },
+      { "field": "cycle_time", "importance": 0.28 }
     ]
   }
 ]

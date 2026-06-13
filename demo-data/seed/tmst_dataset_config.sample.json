@@ -1,0 +1,12 @@
+[
+  {
+    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
+    "datasetName": "Demo Manufacturing AI Dataset",
+    "sourceCollection": "thishmidata",
+    "targetFeatureCollection": "thisfeature",
+    "timeField": "eventTime",
+    "equipmentField": "mcId",
+    "enabled": true,
+    "description": "Synthetic equipment telemetry for portfolio demo workflows."
+  }
+]

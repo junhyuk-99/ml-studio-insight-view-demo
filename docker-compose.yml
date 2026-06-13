@@ -1,0 +1,55 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: ml-studio-demo-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ml-studio-demo-mongo:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: ml_studio_demo
+
+  ai-server:
+    image: python:3.11-slim
+    container_name: ml-studio-demo-ai-server
+    working_dir: /app
+    volumes:
+      - ./apps/ai-server:/app
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8001"
+    ports:
+      - "8001:8001"
+
+  api:
+    image: eclipse-temurin:17-jdk
+    container_name: ml-studio-demo-api
+    working_dir: /app
+    volumes:
+      - ./apps/api:/app
+    command: ./gradlew bootRun
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/ml_studio_demo
+      SERVER_PORT: 8090
+      AI_SERVER_URL: http://ai-server:8001
+      APP_CORS_ALLOWED_ORIGINS: http://localhost:5173,http://localhost:3100
+    ports:
+      - "8090:8090"
+    depends_on:
+      - mongo
+      - ai-server
+
+  web:
+    image: node:22-alpine
+    container_name: ml-studio-demo-web
+    working_dir: /app
+    volumes:
+      - ./apps/web:/app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    environment:
+      VITE_API_BASE_URL: http://localhost:8090
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+
+volumes:
+  ml-studio-demo-mongo:

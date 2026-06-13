@@ -1,0 +1,22 @@
+[
+  {
+    "runId": "DEMO-RUN-IF-001",
+    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
+    "algorithm": "ISOLATION_FOREST",
+    "status": "COMPLETED",
+    "startedAt": "2026-06-10T09:05:00Z",
+    "endedAt": "2026-06-10T09:07:00Z",
+    "recordCount": 240,
+    "createdBy": "DEMO-USER-ANALYST"
+  },
+  {
+    "runId": "DEMO-RUN-RF-001",
+    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
+    "algorithm": "RANDOM_FOREST",
+    "status": "COMPLETED",
+    "startedAt": "2026-06-10T10:00:00Z",
+    "endedAt": "2026-06-10T10:04:00Z",
+    "recordCount": 240,
+    "createdBy": "DEMO-USER-ANALYST"
+  }
+]
