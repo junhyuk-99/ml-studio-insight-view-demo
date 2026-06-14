@@ -12,19 +12,40 @@ function toAuthUser(value: unknown): AuthUser | null {
     return null;
   }
 
-  const normalizedRole = user.role === 'admin' ? 'admin' : user.role === 'user' ? 'user' : null;
+  const normalizedRoleValue = typeof user.role === 'string' ? user.role.trim().toUpperCase() : '';
+  const normalizedRole = normalizedRoleValue === 'ADMIN' ? 'ADMIN' : normalizedRoleValue === 'USER' ? 'USER' : null;
   if (!normalizedRole) {
     return null;
   }
 
-  const normalizedUseflag = user.useflag === 'n' ? 'n' : 'y';
+  const normalizedUseflagValue = typeof user.useflag === 'string' ? user.useflag.trim().toLowerCase() : '';
+  const normalizedUseflag = normalizedUseflagValue === 'n' ? 'n' : 'y';
 
-  return {
+  const authUser: AuthUser = {
     empcode: user.empcode,
     empname: user.empname,
     role: normalizedRole,
     useflag: normalizedUseflag,
   };
+
+  if (typeof user.userId === 'string') {
+    authUser.userId = user.userId;
+  }
+
+  if (typeof user.username === 'string') {
+    authUser.username = user.username;
+  }
+
+  if (typeof user.name === 'string') {
+    authUser.name = user.name;
+  }
+
+  const storedDemoToken = user['token'];
+  if (typeof storedDemoToken === 'string') {
+    authUser['token'] = storedDemoToken;
+  }
+
+  return authUser;
 }
 
 export const authStorage = {

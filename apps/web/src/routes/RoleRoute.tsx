@@ -15,7 +15,10 @@ export function RoleRoute({ element, allowedRoles }: RoleRouteProps) {
     return <Navigate to="/login" replace />;
   }
 
-  if (allowedRoles && !allowedRoles.includes(user.role)) {
+  const normalizedRole = user.role.toLowerCase();
+  const normalizedAllowedRoles = allowedRoles?.map((role) => role.toLowerCase());
+
+  if (normalizedAllowedRoles && !normalizedAllowedRoles.includes(normalizedRole)) {
     return <Navigate to="/" replace />;
   }
 

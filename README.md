@@ -48,12 +48,21 @@ npm install
 npm run dev
 ```
 
+Default local web port: `5173`.
+
+Demo login:
+
+- Account: `admin / admin`
+- Or use the `Demo Login` button on the login page.
+
 API:
 
 ```bash
 cd apps/api
 ./gradlew bootRun
 ```
+
+Default local API port: `8090`.
 
 AI server:
 
@@ -62,6 +71,8 @@ cd apps/ai-server
 python -m pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8001
 ```
+
+Default local AI server port: `8001`.
 
 Seed data:
 

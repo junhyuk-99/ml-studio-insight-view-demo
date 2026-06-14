@@ -1515,7 +1515,7 @@ export function AnomalyCausePage() {
                     <TableCell sx={{ fontWeight: 800, minWidth: 105 }}>기준 표준편차</TableCell>
                     <TableCell sx={{ fontWeight: 800, minWidth: 85 }}>편차 점수</TableCell>
                     <TableCell sx={{ fontWeight: 800, minWidth: 88 }}>방향</TableCell>
-                    <TableCell sx={{ fontWeight: 800, minWidth: 210 }}>설명</TableCell>
+                    <TableCell sx={{ fontWeight: 800, minWidth: 210 }}>Description</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

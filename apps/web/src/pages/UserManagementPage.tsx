@@ -443,7 +443,7 @@ export function UserManagementPage() {
         <DialogContent>
           <Typography variant="body2">
             {selectedUser
-              ? `${selectedUser.empcode} (${selectedUser.empname}) 계정을 삭제하시겠습니까?`
+              ? `Delete account ${selectedUser.empcode} (${selectedUser.empname})?`
               : '선택된 사용자가 없습니다.'}
           </Typography>
         </DialogContent>

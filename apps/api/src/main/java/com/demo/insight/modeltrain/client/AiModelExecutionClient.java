@@ -258,7 +258,7 @@ public class AiModelExecutionClient {
                 messageBuilder.append(", response=").append(responseBody);
             }
             if (ALGO_RANDOM_FOREST.equals(algorithm) && statusCode == 404) {
-                messageBuilder.append(", hint=AI ?혵甕걔?혨 Random Forest endpoint揶쎛 ?源??혱???혞筌왖 ?혡???떷?? expected_endpoint=/api/model/execute/random-forest");
+                messageBuilder.append(", hint=AI server returned 404 for Random Forest. expected_endpoint=/api/model/execute/random-forest");
             }
         } else {
             String exceptionMessage = toText(exception.getMessage());

@@ -1,20 +1,47 @@
 [
   {
-    "runId": "DEMO-RUN-RF-001",
-    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
-    "algorithm": "RANDOM_FOREST",
+    "run_id": "DEMO-RUN-RF-001",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "policy_id": "DEMO-POLICY-RF-DEFAULT",
+    "algo_code": "RANDOM_FOREST",
+    "algo_name": "Random Forest",
     "accuracy": 0.94,
     "precision": 0.91,
     "recall": 0.89,
-    "f1Score": 0.9,
-    "evaluatedAt": "2026-06-10T10:05:00Z"
+    "f1_score": 0.9,
+    "tp": 18,
+    "tn": 22,
+    "fp": 2,
+    "fn": 3,
+    "total_count": 45,
+    "train_count": 32,
+    "test_count": 13,
+    "feature_importances": [
+      {"field": "TEMP_PV_MEAN", "importance": 0.34},
+      {"field": "VIBRATION_RMS_PV_MEAN", "importance": 0.28},
+      {"field": "MOTOR_CURRENT_PV_MEAN", "importance": 0.21}
+    ],
+    "reg_date": "2026-06-10T10:47:00Z"
   },
   {
-    "runId": "DEMO-RUN-IF-001",
-    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
-    "algorithm": "ISOLATION_FOREST",
+    "run_id": "DEMO-RUN-IF-001",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "policy_id": "DEMO-POLICY-IF-DEFAULT",
+    "algo_code": "ISOLATION_FOREST",
+    "algo_name": "Isolation Forest",
     "meanAnomalyScore": 0.22,
     "anomalyRate": 0.045,
-    "evaluatedAt": "2026-06-10T09:08:00Z"
+    "accuracy": 0.92,
+    "precision": 0.88,
+    "recall": 0.86,
+    "f1_score": 0.87,
+    "tp": 4,
+    "tn": 15,
+    "fp": 1,
+    "fn": 1,
+    "total_count": 21,
+    "train_count": 16,
+    "test_count": 5,
+    "reg_date": "2026-06-10T10:37:00Z"
   }
 ]

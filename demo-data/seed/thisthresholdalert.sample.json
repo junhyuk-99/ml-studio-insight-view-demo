@@ -1,14 +1,18 @@
 [
   {
-    "alertId": "DEMO-ALM-001",
-    "mcId": "DEMO-MC-001",
-    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
-    "field": "furnace_temp",
+    "alert_id": "DEMO-ALERT-001",
+    "run_id": "DEMO-RUN-IF-001",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "equipment_id": "DEMO-MC-001",
+    "MCCODE": "DEMO-MC-001",
+    "field": "TEMP_PV_MEAN",
     "operator": ">",
-    "threshold": 760,
-    "observedValue": 772.3,
+    "threshold": 745,
+    "observed_value": 746.8,
     "severity": "WARN",
     "status": "OPEN",
-    "eventTime": "2026-06-10T09:12:00Z"
+    "message": "Synthetic demo threshold alert",
+    "event_time": "2026-06-10T10:39:00Z",
+    "reg_date": "2026-06-10T10:39:00Z"
   }
 ]

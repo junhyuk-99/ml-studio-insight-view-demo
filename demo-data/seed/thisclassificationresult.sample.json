@@ -1,14 +1,24 @@
 [
   {
-    "runId": "DEMO-RUN-RF-001",
-    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
-    "algorithm": "Random Forest",
-    "target": "demoQualityClass",
-    "accuracy": 0.94,
-    "f1Score": 0.91,
-    "featureImportance": [
-      { "field": "furnace_temp", "importance": 0.42 },
-      { "field": "cycle_time", "importance": 0.28 }
-    ]
+    "run_id": "DEMO-RUN-RF-001",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "policy_id": "DEMO-POLICY-RF-DEFAULT",
+    "algo_code": "RANDOM_FOREST",
+    "algo_name": "Random Forest",
+    "labeled_doc_id": "DEMO-LABELED-001",
+    "source_id": "DEMO-SOURCE-001",
+    "actual_label": 1,
+    "prediction_label": 1,
+    "prediction_probability": 0.93,
+    "prediction_probability_normal": 0.07,
+    "prediction_probability_anomaly": 0.93,
+    "split_type": "TEST",
+    "input_features": {
+      "TEMP_PV_MEAN": 746.8,
+      "VIBRATION_RMS_PV_MEAN": 0.29
+    },
+    "correct_yn": "Y",
+    "error_type": "TP",
+    "reg_date": "2026-06-10T10:48:00Z"
   }
 ]

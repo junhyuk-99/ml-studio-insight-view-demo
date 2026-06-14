@@ -330,11 +330,15 @@ export function PreprocessPage() {
   return (
     <Stack spacing={2}>
       <Box>
-        <Typography variant="h4">AI 데이터 전처리</Typography>
+        <Typography variant="h4">Preprocess / Feature Engineering</Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mt: 0.5 }}>
-          선택 알고리즘을 기준으로 전처리 옵션 상태를 확인하고, 원시 데이터 컬럼을 제어합니다.
+          Synthetic demo workflow for DEMO_DATASET_MANUFACTURING_AI: raw preview, numeric feature selection, window stats, and feature preview.
         </Typography>
       </Box>
+
+      <Alert severity="info">
+        Synthetic demo data only. Raw rows use THISHMIDATA and feature previews use thisfeature or frontend fallback samples.
+      </Alert>
 
       {selectedAlgorithm ? (
         <Alert

@@ -1,10 +1,65 @@
 [
   {
-    "policyId": "DEMO-POLICY-001",
-    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
-    "algorithm": "Isolation Forest",
-    "schedule": "manual",
-    "minNewFeatureCount": 50,
-    "createdBy": "DEMO-USER-ANALYST"
+    "policy_id": "DEMO-POLICY-IF-DEFAULT",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "dataset_name": "Demo Manufacturing AI Dataset",
+    "algo_code": "ISOLATION_FOREST",
+    "algo_name": "Isolation Forest",
+    "selected_columns": ["TEMP_PV_MEAN", "PRESSURE_PV_MEAN", "MOTOR_CURRENT_PV_MEAN", "VIBRATION_RMS_PV_MEAN"],
+    "window_size": 30,
+    "params": {
+      "N_ESTIMATORS": 100,
+      "CONTAMINATION": 0.05,
+      "RANDOM_STATE": 42
+    },
+    "auto_train_enabled": false,
+    "scheduler_interval_sec": 600,
+    "min_new_feature_count": 10,
+    "min_total_feature_count": 3,
+    "use_flag": "Y",
+    "reg_date": "2026-06-10T09:00:00Z",
+    "updated_at": "2026-06-10T10:00:00Z"
+  },
+  {
+    "policy_id": "DEMO-POLICY-AE-DEFAULT",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "dataset_name": "Demo Manufacturing AI Dataset",
+    "algo_code": "AUTOENCODER",
+    "algo_name": "AutoEncoder",
+    "selected_columns": ["TEMP_PV_MEAN", "PRESSURE_PV_MEAN", "MOTOR_CURRENT_PV_MEAN", "VIBRATION_RMS_PV_MEAN"],
+    "window_size": 30,
+    "params": {
+      "EPOCHS": 20,
+      "LATENT_DIM": 4,
+      "RECONSTRUCTION_THRESHOLD": 0.45
+    },
+    "auto_train_enabled": false,
+    "scheduler_interval_sec": 600,
+    "min_new_feature_count": 10,
+    "min_total_feature_count": 3,
+    "use_flag": "Y",
+    "reg_date": "2026-06-10T09:00:00Z",
+    "updated_at": "2026-06-10T10:00:00Z"
+  },
+  {
+    "policy_id": "DEMO-POLICY-RF-DEFAULT",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "dataset_name": "Demo Manufacturing AI Dataset",
+    "algo_code": "RANDOM_FOREST",
+    "algo_name": "Random Forest",
+    "selected_columns": ["TEMP_PV_MEAN", "PRESSURE_PV_MEAN", "MOTOR_CURRENT_PV_MEAN", "VIBRATION_RMS_PV_MEAN"],
+    "window_size": 30,
+    "params": {
+      "N_ESTIMATORS": 120,
+      "MAX_DEPTH": 6,
+      "RANDOM_STATE": 42
+    },
+    "auto_train_enabled": false,
+    "scheduler_interval_sec": 600,
+    "min_new_feature_count": 10,
+    "min_total_feature_count": 3,
+    "use_flag": "Y",
+    "reg_date": "2026-06-10T09:00:00Z",
+    "updated_at": "2026-06-10T10:00:00Z"
   }
 ]

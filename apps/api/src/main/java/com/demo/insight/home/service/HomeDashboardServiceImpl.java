@@ -292,7 +292,7 @@ public class HomeDashboardServiceImpl implements HomeDashboardService {
         return new HomeCorrelationSummaryDto(
                 Math.max(selectedFieldCount, 0),
                 available,
-                available ? "" : "?곴?愿怨??곗씠?곌? ?놁뒿?덈떎"
+                available ? "" : "No correlation data."
         );
     }
 
@@ -363,7 +363,7 @@ public class HomeDashboardServiceImpl implements HomeDashboardService {
                     null,
                     null,
                     null,
-                    "吏?꾪븰??寃곌낵 ?곗씠?곌? ?놁뒿?덈떎"
+                    "No supervised learning result data."
             );
         }
 
@@ -380,7 +380,7 @@ public class HomeDashboardServiceImpl implements HomeDashboardService {
                     null,
                     null,
                     null,
-                    "吏?꾪븰??寃곌낵 ?곗씠?곌? ?놁뒿?덈떎"
+                    "No supervised learning result data."
             );
         }
 
@@ -404,7 +404,7 @@ public class HomeDashboardServiceImpl implements HomeDashboardService {
                 toFiniteDouble(latestModelEval == null ? null : latestModelEval.get("f1_score")),
                 resultCount > 0L || latestModelEval != null
                         ? ""
-                        : "吏?꾪븰??寃곌낵 ?곗씠?곌? ?놁뒿?덈떎"
+                        : "No supervised learning result data."
         );
     }
 

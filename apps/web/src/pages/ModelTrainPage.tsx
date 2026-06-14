@@ -257,12 +257,12 @@ function resolveActiveSelectionWarning(
   const activePolicyId = normalizeOptionalText(activeSelection.active_policy_id) ?? '-';
   const activeAlgoCode = normalizeOptionalText(activeSelection.active_algo_code);
   if (!activeAlgoCode) {
-    return `활성 정책(${activePolicyId})을 찾았지만 active_algo_code가 없어 화면에 매핑할 수 없습니다.`;
+    return `Active policy(${activePolicyId}) was found, but active_algo_code is missing.`;
   }
 
   const activeAlgoName = normalizeOptionalText(activeSelection.active_algo_name);
   if (!activeAlgoName) {
-    return `활성 정책(${activePolicyId})의 알고리즘명이 없어 코드(${activeAlgoCode})로 대체 표시합니다.`;
+    return `Active policy(${activePolicyId}) has no algorithm name. Showing code(${activeAlgoCode}) instead.`;
   }
 
   const requestedDataset = buildDatasetIdentity(requestedDatasetKey);
@@ -532,7 +532,7 @@ export function ModelTrainPage() {
   const [anomalyRows, setAnomalyRows] = useState<AnomalyResultRow[]>([]);
   const [loadedRunId, setLoadedRunId] = useState<string | null>(null);
 
-  const isAdmin = user?.role === 'admin';
+  const isAdmin = user?.role.toLowerCase() === 'admin';
 
   const learningDatasetKey = useMemo(
     () => datasetKeyByMode(learningMode, selectedUnsupervisedDatasetKey),
@@ -1243,9 +1243,9 @@ export function ModelTrainPage() {
   return (
     <Stack spacing={2}>
       <Box>
-        <Typography variant="h4">AI 모델 학습 정책</Typography>
+        <Typography variant="h4">Model Training / Run Policy</Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mt: 0.5 }}>
-          수동 실행 화면이 아니라 자동 학습 정책과 실행 상태를 관리하는 화면입니다. 수동 실행은 관리자만 보조 기능으로 수행합니다.
+          Review the active synthetic policy, feature dataset summary, recent demo runs, metrics, and deterministic demo execution status.
         </Typography>
 
         <Tabs
@@ -1535,7 +1535,7 @@ export function ModelTrainPage() {
                 const value = paramFormValues[param.paramCd] ?? '';
                 const error = paramErrors[param.paramCd];
                 const helperText = [
-                  param.desc ? `설명: ${param.desc}` : null,
+                  param.desc ? `Description: ${param.desc}` : null,
                   `min: ${toStringValue(param.minValue) || '-'}`,
                   `max: ${toStringValue(param.maxValue) || '-'}`,
                   `step: ${toStringValue(param.step) || '-'}`,
@@ -1682,7 +1682,7 @@ export function ModelTrainPage() {
               {savingPolicy ? '저장 중...' : '학습 정책 저장'}
             </Button>
             <Button variant="outlined" disabled={!canTriggerNow} onClick={() => void handleTriggerNow()}>
-              {triggeringPolicy ? '실행 중...' : '지금 실행(관리자)'}
+              {triggeringPolicy ? 'Running Demo Model...' : 'Run Demo Model'}
             </Button>
             <Button variant="text" onClick={() => void loadPolicies(learningDatasetKey)} disabled={loadingPolicies}>
               상태 새로고침

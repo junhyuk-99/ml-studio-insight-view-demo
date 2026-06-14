@@ -1,0 +1,23 @@
+[
+  {
+    "algoCd": "ISOLATION_FOREST",
+    "algoNm": "Isolation Forest",
+    "useYn": "Y",
+    "createdAt": "2026-06-10T09:00:00Z",
+    "updatedAt": "2026-06-10T09:00:00Z"
+  },
+  {
+    "algoCd": "AUTOENCODER",
+    "algoNm": "AutoEncoder",
+    "useYn": "Y",
+    "createdAt": "2026-06-10T09:00:00Z",
+    "updatedAt": "2026-06-10T09:00:00Z"
+  },
+  {
+    "algoCd": "RANDOM_FOREST",
+    "algoNm": "Random Forest",
+    "useYn": "Y",
+    "createdAt": "2026-06-10T09:00:00Z",
+    "updatedAt": "2026-06-10T09:00:00Z"
+  }
+]

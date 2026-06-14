@@ -282,7 +282,7 @@ public class ThresholdAlertRepository {
             throw new IllegalStateException("Failed to upsert threshold alert document.");
         }
 
-        // ?혚 alert ?????源껊궗 ?혵 anomalyresult?혱 alert_generated ?혣?혱域밸챶? true嚥≤?揶쏄퉮혢田?
+        // Mark the source anomaly result so it is not selected again.
         markAlertGenerated(runId, datasetKey, equipmentId, windowStart, windowEnd);
 
         updated.remove("_id");
@@ -351,8 +351,7 @@ public class ThresholdAlertRepository {
     }
 
     /**
-     * thisanomalyresult ?얜챷혙혵?혨 alert_generated = true ?혣?혱域밸챶? ?紐끒뙿?혵??
-     * findMissingHealthIndexAlertTargets ?혨?혵 $lookup ?혛????＆?쒕떯? 沃섎챷???椰꾨똻혶혙 鈺곌퀬혳혣?혱疫??혙?혵 ??맞뤒?
+     * Marks a source anomaly result with alert_generated=true.
      */
     private void markAlertGenerated(String runId, String datasetKey, String equipmentId, Date windowStart, Date windowEnd) {
         List<Criteria> criteriaList = new ArrayList<>();

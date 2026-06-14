@@ -1,5 +1,6 @@
-const DEFAULT_UNSUPERVISED_DATASET_KEY = 'demo_hmi_demo_mc_001_default_v1';
-const RANDOM_FOREST_SUPERVISED_DATASET_KEY = 'thisrawlabeled_all_rf_v1';
+const DEFAULT_DEMO_DATASET_KEY = 'DEMO_DATASET_MANUFACTURING_AI';
+const DEFAULT_UNSUPERVISED_DATASET_KEY = DEFAULT_DEMO_DATASET_KEY;
+const RANDOM_FOREST_SUPERVISED_DATASET_KEY = DEFAULT_DEMO_DATASET_KEY;
 
 function normalizeAlgoCode(algoCode: string | null | undefined): string | null {
   if (typeof algoCode !== 'string') {

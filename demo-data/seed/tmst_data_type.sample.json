@@ -1,0 +1,17 @@
+[
+  {
+    "DATASET_KEY": "DEMO_DATASET_MANUFACTURING_AI",
+    "DATASET_NAME": "Demo Manufacturing AI Dataset",
+    "DISPLAY_NAME": "Demo Manufacturing AI Dataset",
+    "TYPE_CODE": "DATABASE",
+    "DTL_CODE": "MONGODB",
+    "SOURCE_COLLECTION": "THISHMIDATA",
+    "TARGET_FEATURE_COLLECTION": "thisfeature",
+    "DATASET_PURPOSE": "FEATURE_SOURCE",
+    "FEATURE_ENABLED": true,
+    "EQUIPMENT_GROUP": "DEMO-MC",
+    "EQUIPMENT_GROUP_NAME": "Demo Manufacturing Equipment",
+    "USE_FLAG": "Y",
+    "SORT_NO": 1
+  }
+]

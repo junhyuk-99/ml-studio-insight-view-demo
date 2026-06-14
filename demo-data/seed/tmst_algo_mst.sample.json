@@ -1,14 +1,16 @@
 [
   {
-    "algoId": "DEMO-ALGO-IFOREST",
-    "algoName": "Isolation Forest",
-    "category": "anomaly_detection",
-    "enabled": true
+    "algoTypeCd": "ANOMALY_DETECTION",
+    "algoTypeNm": "Anomaly Detection",
+    "desc": "Synthetic demo anomaly detection algorithms.",
+    "sortOrd": 1,
+    "useYn": "Y"
   },
   {
-    "algoId": "DEMO-ALGO-RF",
-    "algoName": "Random Forest",
-    "category": "supervised_learning",
-    "enabled": true
+    "algoTypeCd": "SUPERVISED_LEARNING",
+    "algoTypeNm": "Supervised Learning",
+    "desc": "Synthetic demo supervised learning algorithms.",
+    "sortOrd": 2,
+    "useYn": "Y"
   }
 ]

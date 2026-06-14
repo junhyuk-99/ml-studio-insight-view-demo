@@ -49,6 +49,8 @@ public class DynamicSchemaResolver {
     private static final Pattern NON_DATASET_TOKEN_CHAR_PATTERN = Pattern.compile("[^a-z0-9]+");
 
     private static final String DEFAULT_SOURCE_COLLECTION = "THISHMIDATA";
+    private static final String DEFAULT_DEMO_DATASET_KEY = "DEMO_DATASET_MANUFACTURING_AI";
+    private static final String NORMALIZED_DEFAULT_DEMO_DATASET_KEY = "demo_dataset_manufacturing_ai";
     private static final String DEFAULT_EQUIPMENT_SCOPE = "all";
     private static final String DEFAULT_POLICY_NAME = "default";
     private static final int DEFAULT_POLICY_VERSION = 1;
@@ -144,7 +146,7 @@ public class DynamicSchemaResolver {
         return normalized == null ? null : normalized.toUpperCase(Locale.ROOT);
     }
 
-    public String buildSggHmiDatasetKeyForEquipment(String equipmentId) {
+    public String buildDemoHmiDatasetKeyForEquipment(String equipmentId) {
         String normalizedEquipmentId = normalizeEquipmentDatasetToken(equipmentId);
         if (normalizedEquipmentId == null) {
             return null;
@@ -456,6 +458,9 @@ public class DynamicSchemaResolver {
         String normalized = NON_DATASET_KEY_CHAR_PATTERN.matcher(lowered).replaceAll("_");
         normalized = MULTI_UNDERSCORE_PATTERN.matcher(normalized).replaceAll("_");
         normalized = trimUnderscore(normalized);
+        if (NORMALIZED_DEFAULT_DEMO_DATASET_KEY.equals(normalized)) {
+            return DEFAULT_DEMO_DATASET_KEY;
+        }
         return normalized.isEmpty() ? null : normalized;
     }
 

@@ -24,7 +24,7 @@ public class RequestActorService {
         }
 
         EmployeeDocument employee = employeeRepository.findByEmpcode(normalizedEmpcode)
-                .orElseThrow(() -> new UnauthorizedException("Authentication context is invalid."));
+                .orElseThrow(() -> new UnauthorizedException("Authentication context is unavailable for this demo request."));
 
         if (!AuthPolicy.isActive(employee.getUseflag())) {
             throw new UnauthorizedException("Inactive account.");
@@ -32,7 +32,7 @@ public class RequestActorService {
 
         String storedRole = AuthPolicy.normalizeRole(employee.getRole());
         if (!storedRole.equals(normalizedRole)) {
-            throw new UnauthorizedException("Authentication context is invalid.");
+            throw new UnauthorizedException("Authentication context is unavailable for this demo request.");
         }
 
         return new AuthenticatedActor(

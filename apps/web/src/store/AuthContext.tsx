@@ -14,6 +14,7 @@ type AuthContextValue = {
   user: AuthUser | null;
   isAuthenticated: boolean;
   signIn: (empcode: string, emppass: string) => Promise<void>;
+  signInDemo: () => void;
   signOut: () => void;
 };
 
@@ -28,6 +29,12 @@ export function AuthProvider({ children }: PropsWithChildren) {
     setUser(authUser);
   }, []);
 
+  const signInDemo = useCallback(() => {
+    const authUser = authService.createDemoSession();
+    authStorage.saveUser(authUser);
+    setUser(authUser);
+  }, []);
+
   const signOut = useCallback(() => {
     authStorage.clearUser();
     setUser(null);
@@ -37,8 +44,9 @@ export function AuthProvider({ children }: PropsWithChildren) {
     user,
     isAuthenticated: user !== null,
     signIn,
+    signInDemo,
     signOut,
-  }), [signIn, signOut, user]);
+  }), [signIn, signInDemo, signOut, user]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

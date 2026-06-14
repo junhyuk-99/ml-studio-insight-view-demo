@@ -36,7 +36,7 @@ public class ParamController {
     public ResponseEntity<ApiResponse<Void>> saveParams() {
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
                 .body(ApiResponse.failure(
-                        "?뚭퀬由ъ쬁 湲곕낯 ?뚮씪誘명꽣??議고쉶 ?꾩슜?낅땲?? ?뚮씪誘명꽣 蹂寃쎌? 紐⑤뜽?숈뒿 ?뺤콉 ?붾㈃???댁슜?섏꽭??",
+                        "Algorithm parameters are read-only in this public demo. Use the model training policy page to review demo settings.",
                         "ALGORITHM_PARAM_READ_ONLY"
                 ));
     }

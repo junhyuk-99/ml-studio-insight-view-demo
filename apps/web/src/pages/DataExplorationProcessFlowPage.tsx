@@ -525,7 +525,7 @@ function DetailPanel({
     ['시작 시간', formatKstDateTime(current?.startedAt)],
     ['경과 시간', formatDuration(current?.elapsedSeconds)],
     ['최신 PRDTIME', formatKstDateTime(latest?.prdtime)],
-    ['MCCODE / 설비명', data ? `${data.mccode} / ${data.equipmentName ?? '-'}` : '-'],
+    ['MCCODE / Equipment', data ? `${data.mccode} / ${data.equipmentName ?? '-'}` : '-'],
     ['WORKORDER', latest?.workorder ?? '-'],
     ['PAT_PGM', latest?.patPgm ?? '-'],
     ['SEGMENT', `${latest?.segmentNo ?? '-'} / ${latest?.segmentTotal ?? '-'}`],

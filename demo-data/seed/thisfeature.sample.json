@@ -1,14 +1,65 @@
 [
   {
-    "featureDatasetId": "DEMO_DATASET_MANUFACTURING_AI",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
     "runId": "DEMO-RUN-IF-001",
-    "mcId": "DEMO-MC-001",
-    "windowStart": "2026-06-10T09:00:00Z",
-    "windowEnd": "2026-06-10T09:10:00Z",
-    "furnaceTempMean": 741.2,
-    "vibrationRmsMax": 0.29,
-    "pressureStd": 0.08,
-    "cycle_time_mean": 49.4,
-    "createdBy": "DEMO-USER-ANALYST"
+    "MCCODE": "DEMO-MC-001",
+    "equipment_id": "DEMO-MC-001",
+    "window_start": "2026-06-10T09:00:00Z",
+    "window_end": "2026-06-10T09:29:00Z",
+    "feature_values": {
+      "TEMP_PV": {"MEAN": 741.2, "STD": 2.1, "MIN": 737.8, "MAX": 745.9},
+      "PRESSURE_PV": {"MEAN": 2.12, "STD": 0.04, "MIN": 2.05, "MAX": 2.18},
+      "MOTOR_CURRENT_PV": {"MEAN": 17.9, "STD": 0.5, "MIN": 17.1, "MAX": 18.7},
+      "VIBRATION_RMS_PV": {"MEAN": 0.19, "STD": 0.02, "MIN": 0.16, "MAX": 0.23},
+      "META": {
+        "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+        "source_collection": "THISHMIDATA"
+      }
+    },
+    "selected_columns": ["TEMP_PV", "PRESSURE_PV", "MOTOR_CURRENT_PV", "VIBRATION_RMS_PV"],
+    "created_by": "DEMO-USER-ANALYST",
+    "reg_date": "2026-06-10T09:30:00Z"
+  },
+  {
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "runId": "DEMO-RUN-IF-001",
+    "MCCODE": "DEMO-MC-002",
+    "equipment_id": "DEMO-MC-002",
+    "window_start": "2026-06-10T09:30:00Z",
+    "window_end": "2026-06-10T09:59:00Z",
+    "feature_values": {
+      "TEMP_PV": {"MEAN": 738.7, "STD": 1.8, "MIN": 735.4, "MAX": 742.1},
+      "PRESSURE_PV": {"MEAN": 2.09, "STD": 0.03, "MIN": 2.03, "MAX": 2.15},
+      "MOTOR_CURRENT_PV": {"MEAN": 17.4, "STD": 0.4, "MIN": 16.9, "MAX": 18.1},
+      "VIBRATION_RMS_PV": {"MEAN": 0.21, "STD": 0.03, "MIN": 0.17, "MAX": 0.27},
+      "META": {
+        "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+        "source_collection": "THISHMIDATA"
+      }
+    },
+    "selected_columns": ["TEMP_PV", "PRESSURE_PV", "MOTOR_CURRENT_PV", "VIBRATION_RMS_PV"],
+    "created_by": "DEMO-USER-ANALYST",
+    "reg_date": "2026-06-10T10:00:00Z"
+  },
+  {
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "runId": "DEMO-RUN-IF-001",
+    "MCCODE": "DEMO-MC-003",
+    "equipment_id": "DEMO-MC-003",
+    "window_start": "2026-06-10T10:00:00Z",
+    "window_end": "2026-06-10T10:29:00Z",
+    "feature_values": {
+      "TEMP_PV": {"MEAN": 743.1, "STD": 2.4, "MIN": 738.9, "MAX": 747.8},
+      "PRESSURE_PV": {"MEAN": 2.14, "STD": 0.05, "MIN": 2.06, "MAX": 2.21},
+      "MOTOR_CURRENT_PV": {"MEAN": 18.1, "STD": 0.6, "MIN": 17.2, "MAX": 19.0},
+      "VIBRATION_RMS_PV": {"MEAN": 0.24, "STD": 0.04, "MIN": 0.18, "MAX": 0.31},
+      "META": {
+        "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+        "source_collection": "THISHMIDATA"
+      }
+    },
+    "selected_columns": ["TEMP_PV", "PRESSURE_PV", "MOTOR_CURRENT_PV", "VIBRATION_RMS_PV"],
+    "created_by": "DEMO-USER-ANALYST",
+    "reg_date": "2026-06-10T10:30:00Z"
   }
 ]

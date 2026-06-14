@@ -19,7 +19,8 @@ public class EquipmentMasterServiceImpl implements EquipmentMasterService {
     private static final String LEGACY_GLOBAL_DATASET_KEY = "demo_hmi_all_default_v1";
     private static final String DEPRECATED_RUNTIME_DATASET_KEY = "thisraw_all_default_v1";
     private static final String DEPRECATED_RUNTIME_DATASET_PREFIX = "thisraw_";
-    private static final String FALLBACK_OPERATIONAL_DATASET_KEY = "demo_hmi_demo_mc_001_default_v1";
+    private static final String FALLBACK_OPERATIONAL_DATASET_KEY = "DEMO_DATASET_MANUFACTURING_AI";
+    private static final String NORMALIZED_FALLBACK_OPERATIONAL_DATASET_KEY = "demo_dataset_manufacturing_ai";
 
     private final EquipmentMasterRepository equipmentMasterRepository;
     private final DynamicSchemaResolver schemaResolver;
@@ -77,7 +78,7 @@ public class EquipmentMasterServiceImpl implements EquipmentMasterService {
         if (equipment == null) {
             return null;
         }
-        return schemaResolver.buildSggHmiDatasetKeyForEquipment(normalizedEquipmentId);
+        return schemaResolver.buildDemoHmiDatasetKeyForEquipment(normalizedEquipmentId);
     }
 
     @Override
@@ -93,8 +94,9 @@ public class EquipmentMasterServiceImpl implements EquipmentMasterService {
     @Override
     public String resolveDefaultOperationalDatasetKey() {
         String runtimeDefaultDatasetKey = schemaResolver.resolveRuntimeDefaultDatasetKey();
-        if (runtimeDefaultDatasetKey != null) {
-            return runtimeDefaultDatasetKey;
+        if (NORMALIZED_FALLBACK_OPERATIONAL_DATASET_KEY.equalsIgnoreCase(runtimeDefaultDatasetKey)
+                || FALLBACK_OPERATIONAL_DATASET_KEY.equalsIgnoreCase(runtimeDefaultDatasetKey)) {
+            return FALLBACK_OPERATIONAL_DATASET_KEY;
         }
 
         String runtimeDefaultEquipmentId = normalizeEquipmentId(schemaResolver.resolveRuntimeDefaultPrimaryEquipmentId());
@@ -103,15 +105,7 @@ public class EquipmentMasterServiceImpl implements EquipmentMasterService {
             if (datasetKey != null) {
                 return datasetKey;
             }
-            return schemaResolver.buildSggHmiDatasetKeyForEquipment(runtimeDefaultEquipmentId);
-        }
-
-        List<EquipmentMasterDto> aiTargetEquipments = getAiTargetEquipments();
-        if (!aiTargetEquipments.isEmpty()) {
-            String firstEquipmentId = normalizeEquipmentId(aiTargetEquipments.get(0).mccode());
-            if (firstEquipmentId != null) {
-                return schemaResolver.buildSggHmiDatasetKeyForEquipment(firstEquipmentId);
-            }
+            return FALLBACK_OPERATIONAL_DATASET_KEY;
         }
 
         return FALLBACK_OPERATIONAL_DATASET_KEY;
@@ -185,7 +179,7 @@ public class EquipmentMasterServiceImpl implements EquipmentMasterService {
                 normalizeOptionalText(document.getProcessType()),
                 normalizeOptionalText(document.getOpstatCodeGroup()),
                 normalizeOptionalText(document.getAiUseFlag()),
-                mccode == null ? null : schemaResolver.buildSggHmiDatasetKeyForEquipment(mccode)
+                mccode == null ? null : schemaResolver.buildDemoHmiDatasetKeyForEquipment(mccode)
         );
     }
 

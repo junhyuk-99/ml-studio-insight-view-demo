@@ -1,0 +1,26 @@
+[
+  {
+    "algoTypeCd": "ANOMALY_DETECTION",
+    "algoCd": "ISOLATION_FOREST",
+    "sortOrd": 1,
+    "useYn": "Y",
+    "createdAt": "2026-06-10T09:00:00Z",
+    "updatedAt": "2026-06-10T09:00:00Z"
+  },
+  {
+    "algoTypeCd": "ANOMALY_DETECTION",
+    "algoCd": "AUTOENCODER",
+    "sortOrd": 2,
+    "useYn": "Y",
+    "createdAt": "2026-06-10T09:00:00Z",
+    "updatedAt": "2026-06-10T09:00:00Z"
+  },
+  {
+    "algoTypeCd": "SUPERVISED_LEARNING",
+    "algoCd": "RANDOM_FOREST",
+    "sortOrd": 1,
+    "useYn": "Y",
+    "createdAt": "2026-06-10T09:00:00Z",
+    "updatedAt": "2026-06-10T09:00:00Z"
+  }
+]

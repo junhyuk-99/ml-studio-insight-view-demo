@@ -1,4 +1,4 @@
-import { Alert, Box, Divider, Drawer, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
+﻿import { Alert, Box, Divider, Drawer, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import { useMemo } from 'react';
 import {
   buildSidebarMenuSections,
@@ -105,7 +105,7 @@ function SidebarContent({
       >
         {loading && (
           <Typography variant="body2" sx={{ px: 1, py: 1, color: '#d2e1ff' }}>
-            메뉴를 불러오는 중입니다.
+            Loading demo navigation...
           </Typography>
         )}
 
@@ -117,7 +117,7 @@ function SidebarContent({
 
         {!loading && !error && sections.length === 0 && (
           <Typography variant="body2" sx={{ px: 1, py: 1, color: '#d2e1ff' }}>
-            접근 가능한 메뉴가 없습니다.
+            No demo navigation available.
           </Typography>
         )}
 

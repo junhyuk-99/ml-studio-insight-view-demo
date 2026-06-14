@@ -1438,11 +1438,11 @@ public class DataExplorationServiceImpl implements DataExplorationService {
                 && normalizedRequestedEquipmentId != null
                 && !datasetMatchEquipmentId.equalsIgnoreCase(normalizedRequestedEquipmentId)) {
             throw new IllegalArgumentException(
-                    "?좏깮??dataset? "
+                    "The selected dataset is restricted to equipment "
                             + datasetMatchEquipmentId
-                            + "?몃뜲 ?낅젰 MCCODE??"
+                            + ", but the requested MCCODE is "
                             + normalizedRequestedEquipmentId
-                            + "?낅땲??"
+                            + "."
             );
         }
 

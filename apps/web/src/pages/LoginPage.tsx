@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { alpha, keyframes } from '@mui/material/styles';
 import { FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/AuthContext';
 
 const floatBackground = keyframes`
@@ -43,12 +43,21 @@ const glowPulse = keyframes`
 
 export function LoginPage() {
   const navigate = useNavigate();
-  const { signIn } = useAuth();
+  const location = useLocation();
+  const { signIn, signInDemo } = useAuth();
 
   const [empcode, setEmpcode] = useState('');
   const [emppass, setEmppass] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const navigateAfterLogin = () => {
+    const from = location.state && typeof location.state === 'object' && 'from' in location.state
+      ? (location.state.from as { pathname?: string } | null)
+      : null;
+
+    navigate(from?.pathname ?? '/', { replace: true });
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,12 +66,19 @@ export function LoginPage() {
 
     try {
       await signIn(empcode, emppass);
-      navigate('/', { replace: true });
+      navigateAfterLogin();
     } catch (error: unknown) {
       setErrorMessage(error instanceof Error ? error.message : '로그인에 실패했습니다.');
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const handleDemoLogin = () => {
+    setSubmitting(false);
+    setErrorMessage(null);
+    signInDemo();
+    navigateAfterLogin();
   };
 
   return (
@@ -444,6 +460,17 @@ export function LoginPage() {
               </Alert>
             )}
 
+            <Typography
+              variant="body2"
+              sx={{
+                color: 'rgba(82, 95, 152, 0.82)',
+                fontWeight: 600,
+                textAlign: 'center',
+              }}
+            >
+              Demo account: admin / admin
+            </Typography>
+
             <Button
               type="submit"
               variant="contained"
@@ -469,6 +496,28 @@ export function LoginPage() {
               }}
             >
               {submitting ? '로그인 중...' : '로그인'}
+            </Button>
+
+            <Button
+              type="button"
+              variant="outlined"
+              disableElevation
+              onClick={handleDemoLogin}
+              disabled={submitting}
+              sx={{
+                height: 48,
+                borderRadius: '14px',
+                fontWeight: 800,
+                color: '#5f57d8',
+                borderColor: 'rgba(124, 108, 255, 0.36)',
+                backgroundColor: 'rgba(255,255,255,0.62)',
+                '&:hover': {
+                  borderColor: 'rgba(124, 108, 255, 0.62)',
+                  backgroundColor: 'rgba(255,255,255,0.82)',
+                },
+              }}
+            >
+              Demo Login
             </Button>
           </Stack>
         </CardContent>

@@ -1,22 +1,71 @@
 [
   {
-    "runId": "DEMO-RUN-IF-001",
-    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
-    "algorithm": "ISOLATION_FOREST",
-    "status": "COMPLETED",
-    "startedAt": "2026-06-10T09:05:00Z",
-    "endedAt": "2026-06-10T09:07:00Z",
-    "recordCount": 240,
-    "createdBy": "DEMO-USER-ANALYST"
+    "run_id": "DEMO-RUN-IF-001",
+    "doc_type": "RUN",
+    "policy_id": "DEMO-POLICY-IF-DEFAULT",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "dataset_name": "Demo Manufacturing AI Dataset",
+    "algo_code": "ISOLATION_FOREST",
+    "algo_name": "Isolation Forest",
+    "equipment_id": "DEMO-MC-001",
+    "MCCODE": "DEMO-MC-001",
+    "trigger_type": "MANUAL",
+    "status": "SUCCESS",
+    "selected_columns": ["TEMP_PV_MEAN", "PRESSURE_PV_MEAN", "MOTOR_CURRENT_PV_MEAN", "VIBRATION_RMS_PV_MEAN"],
+    "window_size": 30,
+    "params": {
+      "N_ESTIMATORS": 100,
+      "CONTAMINATION": 0.05,
+      "RANDOM_STATE": 42
+    },
+    "message": "Synthetic demo model run",
+    "reg_date": "2026-06-10T10:35:00Z",
+    "updated_at": "2026-06-10T10:36:00Z"
   },
   {
-    "runId": "DEMO-RUN-RF-001",
-    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
-    "algorithm": "RANDOM_FOREST",
-    "status": "COMPLETED",
-    "startedAt": "2026-06-10T10:00:00Z",
-    "endedAt": "2026-06-10T10:04:00Z",
-    "recordCount": 240,
-    "createdBy": "DEMO-USER-ANALYST"
+    "run_id": "DEMO-RUN-AE-001",
+    "doc_type": "RUN",
+    "policy_id": "DEMO-POLICY-AE-DEFAULT",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "dataset_name": "Demo Manufacturing AI Dataset",
+    "algo_code": "AUTOENCODER",
+    "algo_name": "AutoEncoder",
+    "equipment_id": "DEMO-MC-002",
+    "MCCODE": "DEMO-MC-002",
+    "trigger_type": "MANUAL",
+    "status": "SUCCESS",
+    "selected_columns": ["TEMP_PV_MEAN", "PRESSURE_PV_MEAN", "MOTOR_CURRENT_PV_MEAN", "VIBRATION_RMS_PV_MEAN"],
+    "window_size": 30,
+    "params": {
+      "EPOCHS": 20,
+      "LATENT_DIM": 4,
+      "RECONSTRUCTION_THRESHOLD": 0.45
+    },
+    "message": "Synthetic demo model run",
+    "reg_date": "2026-06-10T10:40:00Z",
+    "updated_at": "2026-06-10T10:41:00Z"
+  },
+  {
+    "run_id": "DEMO-RUN-RF-001",
+    "doc_type": "RUN",
+    "policy_id": "DEMO-POLICY-RF-DEFAULT",
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "dataset_name": "Demo Manufacturing AI Dataset",
+    "algo_code": "RANDOM_FOREST",
+    "algo_name": "Random Forest",
+    "equipment_id": "DEMO-MC-003",
+    "MCCODE": "DEMO-MC-003",
+    "trigger_type": "MANUAL",
+    "status": "SUCCESS",
+    "selected_columns": ["TEMP_PV_MEAN", "PRESSURE_PV_MEAN", "MOTOR_CURRENT_PV_MEAN", "VIBRATION_RMS_PV_MEAN"],
+    "window_size": 30,
+    "params": {
+      "N_ESTIMATORS": 120,
+      "MAX_DEPTH": 6,
+      "RANDOM_STATE": 42
+    },
+    "message": "Synthetic demo model run",
+    "reg_date": "2026-06-10T10:45:00Z",
+    "updated_at": "2026-06-10T10:46:00Z"
   }
 ]

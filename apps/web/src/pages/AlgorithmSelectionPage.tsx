@@ -591,9 +591,9 @@ export function AlgorithmSelectionPage() {
   return (
     <Stack spacing={2}>
       <Box>
-        <Typography variant="h4">알고리즘 선택</Typography>
+        <Typography variant="h4">Algorithm Selection</Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mt: 0.5 }}>
-          분석 목적별 추천 알고리즘을 비교하고, 다음 전처리 단계에 반영할 알고리즘을 확정합니다.
+          Select a synthetic demo policy for DEMO_DATASET_MANUFACTURING_AI. The default active algorithm is Isolation Forest.
         </Typography>
 
         <Stack
@@ -857,10 +857,10 @@ export function AlgorithmSelectionPage() {
               }}
             >
               {applyingSelection
-                ? '적용 중...'
+                ? 'Applying Demo Policy...'
                 : isCurrentSelectionApplied
-                  ? '모델 학습 화면 이동'
-                  : '선택 알고리즘 적용 후 모델 학습 이동'}
+                  ? 'Open Model Training'
+                  : 'Apply Demo Policy'}
             </Button>
           </Stack>
         </Box>
@@ -877,7 +877,7 @@ export function AlgorithmSelectionPage() {
           <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1.5 }}>
             <AutoAwesomeIcon color="primary" fontSize="small" />
             <Typography variant="subtitle1" fontWeight={700}>
-              선택 알고리즘 설명
+              Selected Algorithm Overview
             </Typography>
           </Stack>
 

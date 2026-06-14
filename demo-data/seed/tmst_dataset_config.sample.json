@@ -1,12 +1,16 @@
 [
   {
-    "datasetId": "DEMO_DATASET_MANUFACTURING_AI",
-    "datasetName": "Demo Manufacturing AI Dataset",
-    "sourceCollection": "thishmidata",
-    "targetFeatureCollection": "thisfeature",
-    "timeField": "eventTime",
-    "equipmentField": "mcId",
-    "enabled": true,
+    "dataset_key": "DEMO_DATASET_MANUFACTURING_AI",
+    "dataset_name": "Demo Manufacturing AI Dataset",
+    "source_collection": "THISHMIDATA",
+    "target_feature_collection": "thisfeature",
+    "time_field": "PRDTIME",
+    "equipment_field": "MCCODE",
+    "selected_columns": ["TEMP_PV", "PRESSURE_PV", "MOTOR_CURRENT_PV", "VIBRATION_RMS_PV", "GAS_FLOW_PV", "CYCLE_TIME_PV"],
+    "window_size": 30,
+    "target_collection": "thisfeature",
+    "match_filter": {},
+    "use_flag": "Y",
     "description": "Synthetic equipment telemetry for portfolio demo workflows."
   }
 ]

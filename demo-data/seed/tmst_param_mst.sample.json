@@ -1,0 +1,68 @@
+[
+  {
+    "paramCd": "N_ESTIMATORS",
+    "paramNm": "Number of Trees",
+    "dataType": "int",
+    "defaultValue": 100,
+    "minValue": 10,
+    "maxValue": 300,
+    "sortOrd": 1,
+    "desc": "Synthetic demo tree count.",
+    "useYn": "Y"
+  },
+  {
+    "paramCd": "CONTAMINATION",
+    "paramNm": "Contamination",
+    "dataType": "double",
+    "defaultValue": 0.05,
+    "minValue": 0.01,
+    "maxValue": 0.2,
+    "sortOrd": 2,
+    "desc": "Synthetic demo anomaly ratio.",
+    "useYn": "Y"
+  },
+  {
+    "paramCd": "RANDOM_STATE",
+    "paramNm": "Random State",
+    "dataType": "int",
+    "defaultValue": 42,
+    "minValue": 1,
+    "maxValue": 999,
+    "sortOrd": 3,
+    "desc": "Deterministic demo seed.",
+    "useYn": "Y"
+  },
+  {
+    "paramCd": "EPOCHS",
+    "paramNm": "Epochs",
+    "dataType": "int",
+    "defaultValue": 20,
+    "minValue": 5,
+    "maxValue": 100,
+    "sortOrd": 4,
+    "desc": "Synthetic demo training epochs.",
+    "useYn": "Y"
+  },
+  {
+    "paramCd": "LATENT_DIM",
+    "paramNm": "Latent Dimension",
+    "dataType": "int",
+    "defaultValue": 4,
+    "minValue": 2,
+    "maxValue": 16,
+    "sortOrd": 5,
+    "desc": "Synthetic demo embedding size.",
+    "useYn": "Y"
+  },
+  {
+    "paramCd": "MAX_DEPTH",
+    "paramNm": "Max Depth",
+    "dataType": "int",
+    "defaultValue": 6,
+    "minValue": 2,
+    "maxValue": 20,
+    "sortOrd": 6,
+    "desc": "Synthetic demo tree depth.",
+    "useYn": "Y"
+  }
+]

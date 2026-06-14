@@ -1,23 +1,26 @@
 [
   {
-    "mcId": "DEMO-MC-001",
-    "mcName": "Demo Mixer 001",
-    "siteName": "Demo Manufacturing Site",
-    "lineName": "Demo Line A",
-    "useYn": "Y"
+    "MCCODE": "DEMO-MC-001",
+    "MCNAME": "Demo Mixer 001",
+    "USEFLAG": "Y",
+    "process_type": "MIXING",
+    "opstat_code_group": "DEMO_OPSTAT",
+    "ai_use_flag": "Y"
   },
   {
-    "mcId": "DEMO-MC-002",
-    "mcName": "Demo Press 002",
-    "siteName": "Demo Manufacturing Site",
-    "lineName": "Demo Line A",
-    "useYn": "Y"
+    "MCCODE": "DEMO-MC-002",
+    "MCNAME": "Demo Press 002",
+    "USEFLAG": "Y",
+    "process_type": "PRESS",
+    "opstat_code_group": "DEMO_OPSTAT",
+    "ai_use_flag": "Y"
   },
   {
-    "mcId": "DEMO-MC-003",
-    "mcName": "Demo Oven 003",
-    "siteName": "Demo Manufacturing Site",
-    "lineName": "Demo Line B",
-    "useYn": "Y"
+    "MCCODE": "DEMO-MC-003",
+    "MCNAME": "Demo Oven 003",
+    "USEFLAG": "Y",
+    "process_type": "OVEN",
+    "opstat_code_group": "DEMO_OPSTAT",
+    "ai_use_flag": "Y"
   }
 ]

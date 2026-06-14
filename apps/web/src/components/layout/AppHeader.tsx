@@ -47,7 +47,7 @@ const DEFAULT_SNACKBAR: SnackbarState = {
 };
 
 function getRoleLabel(role: AuthUser['role']): string {
-  return role === 'admin' ? '관리자' : '일반사용자';
+  return role.toLowerCase() === 'admin' ? '관리자' : '일반사용자';
 }
 
 export function AppHeader({ user, onMenuClick, onLogout }: AppHeaderProps) {

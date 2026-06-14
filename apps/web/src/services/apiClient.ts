@@ -7,6 +7,19 @@ const DEFAULT_API_BASE_URL = import.meta.env.DEV
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? DEFAULT_API_BASE_URL;
 
+function isDemoAuthSession(authUser: ReturnType<typeof authStorage.loadUser>): boolean {
+  const demoMarker = authUser?.['token'];
+  return authUser?.userId === 'DEMO-ADMIN' || authUser?.username === 'admin' || demoMarker === 'DEMO_ACCESS_TOKEN';
+}
+
+function normalizeDemoErrorMessage(message: string, authUser: ReturnType<typeof authStorage.loadUser>): string {
+  if (isDemoAuthSession(authUser) && message === 'Authentication context is unavailable for this demo request.') {
+    return 'Demo data is not available for this request.';
+  }
+
+  return message;
+}
+
 export const apiClient = {
   async request<T>(path: string, options?: RequestInit): Promise<T> {
     const authUser = authStorage.loadUser();
@@ -27,7 +40,8 @@ export const apiClient = {
     const body = (await response.json()) as ApiResponse<T>;
 
     if (!response.ok || !body.ok) {
-      throw new ApiError(body.message || 'API request failed.', body.errorCode ?? null);
+      const message = normalizeDemoErrorMessage(body.message || 'API request failed.', authUser);
+      throw new ApiError(message, body.errorCode ?? null);
     }
 
     return body.data;

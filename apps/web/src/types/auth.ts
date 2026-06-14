@@ -3,7 +3,7 @@ export type LoginRequest = {
   emppass: string;
 };
 
-export type UserRole = 'admin' | 'user';
+export type UserRole = 'ADMIN' | 'USER' | 'admin' | 'user';
 
 export type UserUseflag = 'y' | 'n';
 
@@ -12,5 +12,9 @@ export type AuthUser = {
   empname: string;
   role: UserRole;
   useflag: UserUseflag;
+  userId?: string;
+  username?: string;
+  name?: string;
+  token?: string;
 };
 

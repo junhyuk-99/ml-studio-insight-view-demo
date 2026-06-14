@@ -137,7 +137,7 @@ public class AlgorithmSelectionServiceImpl implements AlgorithmSelectionService 
         List<Document> matchedPolicies = modelTrainRepository.findPoliciesByDatasetAndAlgo(datasetKey, algoCode);
         if (matchedPolicies.isEmpty()) {
             if (!isPolicySupportedAlgorithm(algoCode)) {
-                throw new IllegalArgumentException("?혙筌왖??혮筌◈???源??혱筌왖 ?혡?? ?혣?⑨＆?귐??혚?혞?? algo_code=" + algoCode);
+                throw new IllegalArgumentException("Unsupported algorithm for demo policy selection. algo_code=" + algoCode);
             }
             throw new IllegalArgumentException(
                     "No active tmst_model_policy found for dataset_key="

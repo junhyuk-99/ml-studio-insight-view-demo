@@ -4,7 +4,7 @@ import type {
 } from '../types/dataExploration';
 
 const DATA_EXPLORATION_DATASET_STORAGE_KEY = 'data-exploration.selectedDatasetKey';
-const DEFAULT_DATASET_KEY = 'demo_hmi_demo_mc_001_default_v1';
+const DEFAULT_DATASET_KEY = 'DEMO_DATASET_MANUFACTURING_AI';
 const LEGACY_GLOBAL_DATASET_KEY = 'demo_hmi_all_default_v1';
 const DEPRECATED_RUNTIME_DATASET_KEY = 'thisraw_all_default_v1';
 const REQUIRED_DATASET_PURPOSE = 'FEATURE_SOURCE';
@@ -100,7 +100,7 @@ export function persistDataExplorationDatasetKey(datasetKey: string): void {
   try {
     window.localStorage.setItem(DATA_EXPLORATION_DATASET_STORAGE_KEY, normalized);
   } catch {
-    // Ignore storage errors (private mode, blocked storage).
+    // Ignore storage errors from private mode or blocked storage.
   }
 }
 
@@ -154,11 +154,11 @@ export function resolveDataExplorationDatasetKeyWithFallback(options: {
     }
     const fallback = resolveDefaultDataExplorationDatasetKey(options.datasetOptions, options.preferredDatasetKey);
     if (!fallback) {
-      return { datasetKey: '', warning: `?붿껌??datasetKey(${candidate})瑜??ъ슜?????놁뒿?덈떎.` };
+      return { datasetKey: '', warning: `Requested datasetKey(${candidate}) is not available.` };
     }
     return {
       datasetKey: fallback,
-      warning: `?붿껌??datasetKey(${candidate})瑜??ъ슜?????놁뼱 ${fallback}濡??꾪솚?덉뒿?덈떎.`,
+      warning: `Requested datasetKey(${candidate}) is not available. Using ${fallback} instead.`,
     };
   }
 

@@ -4,7 +4,7 @@ spring:
 
   data:
     mongodb:
-      uri: ${MONGODB_URI:mongodb://localhost:27017/demo_ml_studio_db}
+      uri: ${MONGODB_URI:mongodb://localhost:27017/ml_studio_demo}
       
   lifecycle:
     timeout-per-shutdown-phase: 10s

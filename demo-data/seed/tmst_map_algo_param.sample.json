@@ -1,0 +1,86 @@
+[
+  {
+    "algoCd": "ISOLATION_FOREST",
+    "paramCd": "N_ESTIMATORS",
+    "defaultValue": 100,
+    "minValue": 10,
+    "maxValue": 300,
+    "uiType": "number",
+    "step": 10,
+    "requiredYn": "Y",
+    "sortOrd": 1,
+    "useYn": "Y"
+  },
+  {
+    "algoCd": "ISOLATION_FOREST",
+    "paramCd": "CONTAMINATION",
+    "defaultValue": 0.05,
+    "minValue": 0.01,
+    "maxValue": 0.2,
+    "uiType": "number",
+    "step": 0.01,
+    "requiredYn": "Y",
+    "sortOrd": 2,
+    "useYn": "Y"
+  },
+  {
+    "algoCd": "ISOLATION_FOREST",
+    "paramCd": "RANDOM_STATE",
+    "defaultValue": 42,
+    "minValue": 1,
+    "maxValue": 999,
+    "uiType": "number",
+    "step": 1,
+    "requiredYn": "Y",
+    "sortOrd": 3,
+    "useYn": "Y"
+  },
+  {
+    "algoCd": "AUTOENCODER",
+    "paramCd": "EPOCHS",
+    "defaultValue": 20,
+    "minValue": 5,
+    "maxValue": 100,
+    "uiType": "number",
+    "step": 1,
+    "requiredYn": "Y",
+    "sortOrd": 1,
+    "useYn": "Y"
+  },
+  {
+    "algoCd": "AUTOENCODER",
+    "paramCd": "LATENT_DIM",
+    "defaultValue": 4,
+    "minValue": 2,
+    "maxValue": 16,
+    "uiType": "number",
+    "step": 1,
+    "requiredYn": "Y",
+    "sortOrd": 2,
+    "useYn": "Y"
+  },
+  {
+    "algoCd": "RANDOM_FOREST",
+    "paramCd": "N_ESTIMATORS",
+    "defaultValue": 120,
+    "minValue": 20,
+    "maxValue": 300,
+    "uiType": "number",
+    "step": 10,
+    "requiredYn": "Y",
+    "sortOrd": 1,
+    "useYn": "Y"
+  },
+  {
+    "algoCd": "RANDOM_FOREST",
+    "paramCd": "MAX_DEPTH",
+    "defaultValue": 6,
+    "minValue": 2,
+    "maxValue": 20,
+    "uiType": "number",
+    "step": 1,
+    "requiredYn": "N",
+    "sortOrd": 2,
+    "useYn": "Y"
+  }
+]

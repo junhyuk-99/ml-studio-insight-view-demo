@@ -26,6 +26,8 @@ public class DataExplorationDatasetResolver {
 
     private static final String ACTIVE_YN = "Y";
     private static final String LEGACY_GLOBAL_DATASET_KEY = "demo_hmi_all_default_v1";
+    private static final String DEFAULT_DATASET_KEY = "DEMO_DATASET_MANUFACTURING_AI";
+    private static final String NORMALIZED_DEFAULT_DATASET_KEY = "demo_dataset_manufacturing_ai";
     private static final String DEFAULT_DATASET_NAME = "Demo HMI Dataset";
     private static final String DEFAULT_DISPLAY_NAME = "Demo HMI Dataset";
     private static final String DEFAULT_SOURCE_COLLECTION = "THISHMIDATA";
@@ -94,7 +96,7 @@ public class DataExplorationDatasetResolver {
                     || equipmentMasterService.isLegacyGlobalDatasetKey(normalizedDatasetKey)) {
                 throw new IllegalArgumentException("Unsupported dataset_key for data exploration: " + normalizedDatasetKey);
             }
-            DatasetContext explicitContext = resolveContextByDatasetKey(normalizedDatasetKey, false, true);
+            DatasetContext explicitContext = resolveContextByDatasetKey(canonicalDatasetKey(normalizedDatasetKey), false, true);
             if (explicitContext != null) {
                 return explicitContext;
             }
@@ -235,9 +237,9 @@ public class DataExplorationDatasetResolver {
     }
 
     private DatasetContext defaultFallbackContext(String datasetKey) {
-        String resolvedDatasetKey = normalizeText(datasetKey);
+        String resolvedDatasetKey = canonicalDatasetKey(normalizeText(datasetKey));
         if (resolvedDatasetKey == null) {
-            resolvedDatasetKey = LEGACY_GLOBAL_DATASET_KEY;
+            resolvedDatasetKey = DEFAULT_DATASET_KEY;
         }
         return new DatasetContext(
                 resolvedDatasetKey,
@@ -279,7 +281,19 @@ public class DataExplorationDatasetResolver {
         if (fromConfig != null) {
             return fromConfig;
         }
-        return LEGACY_GLOBAL_DATASET_KEY;
+        return DEFAULT_DATASET_KEY;
+    }
+
+    private String canonicalDatasetKey(String datasetKey) {
+        String normalized = normalizeText(datasetKey);
+        if (normalized == null) {
+            return null;
+        }
+        if (NORMALIZED_DEFAULT_DATASET_KEY.equalsIgnoreCase(normalized)
+                || DEFAULT_DATASET_KEY.equalsIgnoreCase(normalized)) {
+            return DEFAULT_DATASET_KEY;
+        }
+        return normalized;
     }
 
     private String resolveSourceCollection(Document datasetConfig, DataTypeDatasetDocument datasetDocument) {
