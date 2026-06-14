@@ -1,30 +1,30 @@
-# Security
+# 보안
 
-This public demo repository is sanitized for portfolio use.
+이 공개 데모 저장소는 포트폴리오 용도로 정제되었습니다.
 
-## Public Release Policy
+## 공개 정책
 
-- No credentials, tokens, API keys, private certificates, or password values.
-- No production database URI or private service endpoint.
-- No real IP address, host, internal URL, or deployment path.
-- No real customer, facility, equipment, lot, part, operator, or log data.
-- No pickle, joblib, or trained model artifact files.
-- `.env` is ignored; `.env.example` contains localhost-only dummy values.
+- 인증 정보, 토큰, API 키, 개인 인증서, 비밀번호 값 없음
+- 운영 DB URI 또는 비공개 서비스 엔드포인트 없음
+- 실제 IP 주소, 호스트, 내부 URL, 배포 경로 없음
+- 실제 고객, 시설, 설비, LOT, 부품, 작업자, 로그 데이터 없음
+- pickle, joblib, 학습된 모델 아티팩트 파일 없음
+- `.env`는 무시(ignore)되며, `.env.example`은 localhost 전용 더미 값만 포함
 
-## Local Configuration
+## 로컬 설정
 
-Runtime values should be provided through environment variables. The default values are suitable for local demo execution only.
+런타임 값은 환경 변수로 제공해야 합니다. 기본값은 로컬 데모 실행 전용입니다.
 
-## Safety Scan
+## 안전 스캔
 
-Run:
+실행:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/scan-public-safety.ps1
 ```
 
-The scanner prints file names and line numbers only and does not echo matched values.
+스캐너는 파일명과 줄 번호만 출력하며, 매칭된 값 자체는 출력하지 않습니다.
 
-## Demo Limitation
+## 데모 한계
 
-Authentication and authorization are simplified for portfolio demonstration. Harden request authentication, authorization, audit logging, rate limiting, and secret handling before adapting the code for real deployment.
+인증 및 인가는 포트폴리오 시연을 위해 단순화되어 있습니다. 실제 배포에 코드를 적용하기 전에 요청 인증, 인가, 감사 로깅, 레이트 리밋, 시크릿 처리를 강화해야 합니다.
