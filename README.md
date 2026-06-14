@@ -565,14 +565,17 @@ The purpose of this repository is to show both implementation and learning progr
 
 ## Documentation
 
-| Document                       | Description                                    |
-| ------------------------------ | ---------------------------------------------- |
-| `docs/SECURITY.md`             | Public release security and exclusion policy   |
-| `docs/DATA_NOTICE.md`          | Synthetic data notice and data handling policy |
-| `docs/ARCHITECTURE.md`         | Architecture and system data flow, if present  |
-| `docs/API.md`                  | API details, if present                        |
-| `docs/DATA_SCHEMA.md`          | Demo MongoDB schema, if present                |
-| `docs/CASE_STUDY_ML_STUDIO.md` | Anonymized project case study, if present      |
+## Documentation
+
+| Document | Description |
+|---|---|
+| [Architecture](docs/ARCHITECTURE.md) | System architecture and data flow overview |
+| [API Reference](docs/API.md) | Backend API endpoints and response format |
+| [Data Schema](docs/DATA_SCHEMA.md) | MongoDB demo schema and collection structure |
+| [Security Notice](docs/SECURITY.md) | Security, anonymization, and public release policy |
+| [Data Notice](docs/DATA_NOTICE.md) | Synthetic data and data handling notice |
+| [Case Study](docs/CASE_STUDY_ML_STUDIO.md) | Anonymized ML Studio / Insight View case study |
+| [Reuse Candidates](docs/REUSE_CANDIDATES.md) | Reusable modules and extension candidates |
 
 ## Public Demo Relationship
 
