@@ -1,198 +1,104 @@
-# Case Study: ML Studio / Insight View
+# 케이스 스터디: ML Studio / Insight View
 
-## 1. Overview
+## 1. 개요
 
-This case study summarizes a manufacturing AI analytics project experience and the public synthetic demo rebuilt from it.
+제조 AI 분석 프로젝트 경험과 이를 기반으로 재구성한 공개 합성 데모를 정리한 케이스 스터디입니다.
 
-The original project focused on building an AI-assisted manufacturing data analysis platform that could support process data exploration, preprocessing, feature generation, anomaly detection, threshold monitoring, supervised learning result review, and AI operation monitoring.
+원본 프로젝트는 공정 데이터 탐색, 전처리, 피처 생성, 이상 탐지, 임계값 모니터링, 지도학습 결과 검토, AI 운영 모니터링을 지원하는 AI 기반 제조 데이터 분석 플랫폼 구축에 집중했습니다.
 
-The public repository is not the production system. It is a rebuilt portfolio demo that uses synthetic data and local-only runtime components to demonstrate the same engineering concepts without exposing production source code, production data, customer information, infrastructure details, or private configuration.
+공개 저장소는 운영 시스템이 아닙니다. 합성 데이터와 로컬 전용 런타임으로 동일한 엔지니어링 개념을 재현한 포트폴리오 데모이며, 운영 소스코드·데이터·고객 정보·인프라 세부·비공개 구성을 노출하지 않습니다.
 
-The demo is designed to show the full analysis workflow:
+데모가 보여주는 전체 분석 워크플로:
 
 ```text
-Raw Manufacturing Data
-→ Data Exploration
-→ Preprocessing / Filtering
-→ Feature Engineering
-→ Algorithm Selection
-→ Model Run
-→ Anomaly Detection Result
-→ Threshold / Supervised Result Review
-→ AI Operation Dashboard
+원천 제조 데이터
+→ 데이터 탐색
+→ 전처리 / 필터링
+→ 피처 엔지니어링
+→ 알고리즘 선택
+→ 모델 실행
+→ 이상 탐지 결과
+→ 임계값 / 지도학습 결과 검토
+→ AI 운영 대시보드
 ```
 
-## 2. Background
+## 2. 배경 및 문제
 
-Manufacturing AI projects require more than simply connecting charts to collected sensor data.
+제조 AI 프로젝트는 수집된 센서 데이터에 차트를 연결하는 것 이상을 요구합니다. 원천 공정 레코드에는 다수의 변수, 타임스탬프, 설비 식별자, 상태값, 운영 조건이 섞여 있습니다. AI 모델을 적용하기 전에 데이터를 이해하고 필터링·변환해, 모델 실행과 결과 해석에 의미 있는 피처로 정리해야 합니다.
 
-Raw process records often contain many variables, timestamps, equipment identifiers, status values, and operating conditions. Before applying AI models, the data must be understood, filtered, transformed, and organized into features that are meaningful for model execution and result interpretation.
+제조 분석 팀은 흔히 분리된 도구들을 오가며 텔레메트리를 점검하고, 모델 입력 데이터를 준비하고, 모델을 실행하고, 결과를 검토해야 합니다. 이 과정에서 다음 문제가 발생합니다:
 
-The original ML Studio / Insight View project was developed to support this process through a web-based platform. It provided screens for data exploration, preprocessing, algorithm selection, model execution, anomaly result review, threshold alerts, supervised learning metrics, and AI operation status.
+- 원천 공정 데이터를 직접 해석하기 어려움
+- AI 분석에 쓰기 전 센서·공정 변수 필터링 필요
+- 피처 생성 규칙이 가시적이고 재현 가능해야 함
+- 모델 실행 상태와 결과 이력이 추적 가능해야 함
+- 이상 탐지 결과를 현장에서 읽을 수 있는 지표로 변환 필요
+- 임계값 알림과 지도학습 지표를 같은 운영 맥락에서 검토해야 함
+- 분리된 스크립트나 원천 모델 출력이 아니라 대시보드형 인터페이스 필요
 
-The public demo rebuilds this concept using synthetic manufacturing data and simplified local runtime services.
+이 프로젝트는 워크플로를 통합된 ML Studio / Insight View 구조로 조직해 이 문제들을 해결했습니다.
 
-## 3. Problem
+## 3. 주요 도전 과제
 
-Manufacturing analytics teams often need to inspect telemetry, prepare model-ready datasets, execute AI models, and review results across disconnected tools.
+### 3.1 제조 AI 데이터 이해
 
-This creates several issues:
+첫 과제는 어떤 제조 데이터를 AI 분석에 써야 하는지 이해하는 것이었습니다. 원천 데이터에는 많은 컬럼이 있지만 전부가 이상 탐지나 지도학습에 유용하지는 않았습니다. 어떤 필드는 공정 값, 어떤 필드는 설정값(setpoint), 어떤 필드는 상태 코드, 나머지는 식별자나 메타데이터였습니다.
 
-* Raw process data is difficult to interpret directly.
-* Sensor and process variables must be filtered before they can be used for AI analysis.
-* Feature generation rules need to be visible and repeatable.
-* Model execution status and result history must be traceable.
-* Anomaly detection results must be translated into field-readable indicators.
-* Threshold alerts and supervised learning metrics should be reviewed in the same operational context.
-* Users need a dashboard-style interface rather than isolated scripts or raw model output.
+사용 가능한 필드를 검토해 실무 범주(시간 필드, 설비 식별자, 공정 변수, 센서 값, 상태값, 데이터셋 메타데이터, 피처 후보, 모델 결과 필드)로 분리했고, 이를 통해 데이터 탐색·전처리 화면에 어떤 필드를 노출할지 정의했습니다.
 
-The project addressed these issues by organizing the workflow into an integrated ML Studio / Insight View structure.
+### 3.2 전처리·필터링 규칙 설계
 
-## 4. Development Challenges
+두 번째 과제는 UI에서 이해 가능한 전처리 플로 설계였습니다. 전처리 워크플로는 다음 결정을 지원해야 했습니다: 어떤 데이터셋을 분석할 것인가, 어떤 설비/설비 그룹을 포함할 것인가, 어떤 시간 범위를 쓸 것인가, 어떤 수치 필드를 선택할 것인가, 어떤 레코드를 제외할 것인가, 어떤 컬럼을 피처 입력으로 만들 것인가.
 
-### 4.1 Understanding manufacturing AI data
+핵심 원칙은 일관됩니다: 원천 레코드가 모델 결과 화면으로 바로 들어가서는 안 되며, 먼저 가시적인 필터링·피처 준비 과정을 거쳐야 합니다.
 
-The first challenge was understanding what kind of manufacturing data should be used for AI analysis.
+### 3.3 피처 준비 데이터셋 구축
 
-Raw process data usually contains many columns, but not every column is useful for anomaly detection or supervised learning. Some fields represent process values, some represent setpoints, some represent status codes, and others may be identifiers or metadata.
-
-The project required reviewing available data fields and separating them into practical categories:
-
-* Time fields
-* Equipment identifiers
-* Process variables
-* Sensor values
-* Status values
-* Dataset metadata
-* Feature candidates
-* Model result fields
-
-This helped define which fields should be exposed in the data exploration and preprocessing screens.
-
-### 4.2 Designing preprocessing and filtering rules
-
-The second challenge was designing a preprocessing flow that was understandable from the UI.
-
-The preprocessing workflow needed to support basic decisions such as:
-
-* Which dataset should be analyzed?
-* Which equipment or equipment group should be included?
-* Which time range should be used?
-* Which numeric fields should be selected?
-* Which records should be filtered out?
-* Which columns should become feature inputs?
-
-The public demo simplifies this into a synthetic workflow, but the main idea remains the same: raw records should not go directly into model result screens. They must first pass through a visible filtering and feature preparation process.
-
-### 4.3 Building feature-ready datasets
-
-The project used the concept of feature datasets to separate raw manufacturing records from model-ready inputs.
-
-In the public demo, synthetic raw records are represented in `THISHMIDATA`, while feature preview and feature rows are represented in `thisfeature`.
-
-This separation is important because AI models usually require structured input features rather than raw event records.
-
-The demo presents this as:
+원천 제조 레코드와 모델 입력 데이터를 분리하기 위해 **피처 데이터셋** 개념을 사용했습니다. 공개 데모에서 합성 원천 레코드는 `THISHMIDATA`에, 피처 미리보기와 피처 행은 `thisfeature`에 표현됩니다. AI 모델은 보통 원천 이벤트 레코드가 아니라 구조화된 입력 피처를 요구하므로 이 분리가 중요합니다.
 
 ```text
 THISHMIDATA
-→ selected fields
-→ window-based feature preview
+→ 선택된 필드
+→ 윈도 기반 피처 미리보기
 → thisfeature
-→ model run input
+→ 모델 실행 입력
 ```
 
-### 4.4 Connecting algorithm selection to model run policy
+### 3.4 알고리즘 선택과 모델 실행 정책 연결
 
-Another challenge was connecting algorithm selection to model execution.
+알고리즘 선택을 모델 실행과 연결하는 것도 과제였습니다. 선택된 데이터셋에 어떤 알고리즘이 활성인지, 그 정책이 이후 모델 실행과 어떻게 연결되는지 보여줘야 했습니다. 공개 데모는 이를 합성 정책·알고리즘 메타데이터(`tmst_algo_mst`, `tmst_algo_dtl`, `tmst_map_algo`, `tmst_param_mst`, `tmst_map_algo_param`, `tmst_model_policy`, `tmst_model_active`)로 표현합니다. 운영 수준 튜닝이 아니라 플로의 가시화에 집중했습니다.
 
-The platform needed to show which algorithm was active for the selected dataset and how that policy related to later model runs.
+지원 데모 알고리즘: Isolation Forest, AutoEncoder, Random Forest.
 
-The public demo represents this with synthetic policy and algorithm metadata:
+### 3.5 현장 친화적 AI 결과 표현
 
-* `tmst_algo_mst`
-* `tmst_algo_dtl`
-* `tmst_map_algo`
-* `tmst_param_mst`
-* `tmst_map_algo_param`
-* `tmst_model_policy`
-* `tmst_model_active`
+AI 모델 출력은 원시 형태로는 이해하기 어렵습니다. 이상 점수, 예측 레이블, 혼동 행렬 값, 피처 중요도 지표를 작업자·분석가·검토자가 빠르게 해석할 수 있게 표시해야 했습니다.
 
-The demo focuses on making the flow visible rather than providing production-grade tuning.
+공개 데모는 AI 결과를 이상 점수 카드, 실행(run) 선택기, 상태 분포, 헬스 인덱스, 이상 결과 테이블, 임계값 알림 목록, 지도학습 지표, 혼동 행렬, 예측 분포, AI 개요 대시보드로 보여줍니다. 목적은 모델 결과를 원시 ML 출력이 아니라 운영 인사이트 계층으로 제시하는 것입니다.
 
-Supported demo algorithms include:
+### 3.6 운영 로직과 공개 데모 로직 분리
 
-* Isolation Forest
-* AutoEncoder
-* Random Forest
+운영 정보를 노출하지 않고 공개 포트폴리오 저장소를 만드는 것이 큰 제약이었습니다. 운영 소스코드, 운영 데이터, 실제 설비 식별자, 실제 고객·시설명, 실제 DB 연결값, 서버 주소, 런타임 로그, 모델 아티팩트, 비공개 배포 구성, 비공개 저장소 히스토리를 의도적으로 제외하고, 대신 합성 식별자·결정론적 시드 데이터·로컬 전용 서비스를 사용했습니다.
 
-### 4.5 Making AI results readable for field users
+## 4. 해결 방식
 
-AI model output is not always easy to understand in raw form.
+시스템을 대시보드 중심의 제조 AI 워크플로로 구조화했습니다. 공개 데모 구성:
 
-Anomaly scores, prediction labels, confusion matrix values, and feature importance metrics need to be displayed in a way that operators, analysts, or project reviewers can interpret quickly.
-
-The public demo shows AI results through:
-
-* Anomaly score cards
-* Run selector
-* Status distribution
-* Health index values
-* Anomaly result table
-* Threshold alert list
-* Supervised learning metrics
-* Confusion matrix
-* Prediction distribution
-* AI overview dashboard
-
-The purpose is to present model results as an operational insight layer rather than raw machine learning output.
-
-### 4.6 Separating production logic from public demo logic
-
-A major constraint was creating a public portfolio repository without exposing production information.
-
-The public demo intentionally excludes:
-
-* Production source code
-* Production data
-* Real equipment identifiers
-* Real customer or facility names
-* Real database connection values
-* Server addresses
-* Runtime logs
-* Model artifacts
-* Private deployment configuration
-* Private repository history
-
-Instead, the repository uses synthetic identifiers, deterministic seed data, and local-only services.
-
-## 5. Solution
-
-The solution was to structure the system as a dashboard-centered manufacturing AI workflow.
-
-The public demo uses:
-
-* React frontend for operational screens and result review
-* Spring Boot API for dataset, dashboard, preprocessing, model run, and result endpoints
-* FastAPI AI server for deterministic demo model execution
-* MongoDB seed data for synthetic raw records, features, model runs, anomaly results, alerts, and supervised metrics
-
-The Spring Boot API acts as the facade between the frontend, MongoDB, and the AI server.
-
-Conceptually, the system works like this:
+- **React 프론트엔드** — 운영 화면 및 결과 검토
+- **Spring Boot API** — 데이터셋, 대시보드, 전처리, 모델 실행, 결과 엔드포인트. 프론트엔드·MongoDB·AI 서버 사이의 파사드 역할
+- **FastAPI AI 서버** — Isolation Forest, AutoEncoder, Random Forest의 결정론적 데모 모델 실행
+- **MongoDB 시드 데이터** — 합성 원천 레코드, 피처, 모델 실행, 이상 결과, 알림, 지도학습 지표
 
 ```text
 React UI
 → Spring Boot API
-→ MongoDB demo dataset
-→ FastAPI AI server
-→ result collections
-→ dashboard result screens
+→ MongoDB 데모 데이터셋
+→ FastAPI AI 서버
+→ 결과 컬렉션
+→ 대시보드 결과 화면
 ```
 
-## 6. Architecture
-
-The public demo architecture is structured as follows:
+## 5. 아키텍처 및 데이터 파이프라인
 
 ```text
 Portfolio Reviewer
@@ -206,201 +112,92 @@ MongoDB Synthetic Dataset
 FastAPI Demo AI Server
 ```
 
-Main runtime components:
+주요 런타임 구성요소:
 
-| Component                   | Role                            |
-| --------------------------- | ------------------------------- |
-| `apps/web`                  | React + TypeScript dashboard UI |
-| `apps/api`                  | Spring Boot API and demo facade |
-| `apps/ai-server`            | FastAPI model execution service |
-| `demo-data/seed`            | Synthetic seed JSON records     |
-| `scripts/seed-demo-data.py` | Seed loader for local MongoDB   |
-| `ml_studio_demo`            | Local demo MongoDB database     |
+| 구성요소 | 역할 |
+| --- | --- |
+| `apps/web` | React + TypeScript 대시보드 UI |
+| `apps/api` | Spring Boot API 및 데모 파사드 |
+| `apps/ai-server` | FastAPI 모델 실행 서비스 |
+| `demo-data/seed` | 합성 시드 JSON 레코드 |
+| `scripts/seed-demo-data.py` | 로컬 MongoDB 시드 로더 |
+| `ml_studio_demo` | 로컬 데모 MongoDB 데이터베이스 |
 
-The production architecture followed the same general concept, but included operational data, internal configuration, deployment-specific infrastructure, and private security boundaries that are not included in the public repository.
+공개 데모는 합성 컬렉션으로 AI 워크플로를 표현합니다:
 
-## 7. Data Pipeline
+| 파이프라인 단계 | 데모 컬렉션 / 소스 | 설명 |
+| --- | --- | --- |
+| Raw HMI 데이터 | `THISHMIDATA` | 합성 공정 레코드 |
+| 설비 마스터 | `TMSTMC` | 공개 안전 데모 설비 메타데이터 |
+| 데이터셋 설정 | `tmst_dataset_config` | 데모 데이터셋 레지스트리 |
+| 피처 설정 | `tmst_feature_mst` | 피처 데이터셋 메타데이터 |
+| 피처 행 | `thisfeature` | 합성 피처 준비 행 |
+| 알고리즘 메타데이터 | `tmst_algo_mst`, `tmst_algo_dtl`, `tmst_map_algo` | 데모 알고리즘 카탈로그 |
+| 파라미터 메타데이터 | `tmst_param_mst`, `tmst_map_algo_param` | 데모 알고리즘 파라미터 메타데이터 |
+| 모델 정책 | `tmst_model_policy`, `tmst_model_active` | 활성 데모 모델 정책 |
+| 모델 실행 이력 | `thismodelrun` | 합성 실행 메타데이터 |
+| 이상 결과 | `thisanomalyresult` | Isolation Forest / 이상 결과 행 |
+| 임계값 알림 | `thisthresholdalert` | 합성 임계값 알림 행 |
+| 지도학습 결과 | `thisclassificationresult`, `thismodeleval` | Random Forest 결과 및 지표 행 |
 
-The public demo uses synthetic collections to represent the AI workflow.
+공개 데모 데이터셋 키: `DEMO_DATASET_MANUFACTURING_AI`
 
-| Pipeline Step         | Demo Collection / Source                          | Description                            |
-| --------------------- | ------------------------------------------------- | -------------------------------------- |
-| Raw HMI data          | `THISHMIDATA`                                     | Synthetic process records              |
-| Equipment master      | `TMSTMC`                                          | Public-safe demo equipment metadata    |
-| Dataset configuration | `tmst_dataset_config`                             | Demo dataset registry                  |
-| Feature configuration | `tmst_feature_mst`                                | Feature dataset metadata               |
-| Feature rows          | `thisfeature`                                     | Synthetic feature-ready rows           |
-| Algorithm metadata    | `tmst_algo_mst`, `tmst_algo_dtl`, `tmst_map_algo` | Demo algorithm catalog                 |
-| Parameter metadata    | `tmst_param_mst`, `tmst_map_algo_param`           | Demo algorithm parameter metadata      |
-| Model policy          | `tmst_model_policy`, `tmst_model_active`          | Active demo model policy               |
-| Model run history     | `thismodelrun`                                    | Synthetic run metadata                 |
-| Anomaly results       | `thisanomalyresult`                               | Isolation Forest / anomaly result rows |
-| Threshold alerts      | `thisthresholdalert`                              | Synthetic threshold alert rows         |
-| Supervised results    | `thisclassificationresult`, `thismodeleval`       | Random Forest result and metric rows   |
+운영 아키텍처는 동일한 개념을 따랐지만, 운영 데이터·내부 구성·배포 환경 특화 인프라·비공개 보안 경계를 포함했으며 이는 공개 저장소에 들어 있지 않습니다.
 
-The canonical public demo dataset key is:
+## 6. AI 분석 화면 흐름
 
-```text
-DEMO_DATASET_MANUFACTURING_AI
-```
+- **AI Overview** — 활성 데모 모델, 최근 모델 실행 상태, 데모 데이터셋 상태, 신호 하이라이트 요약
+- **Data Exploration** — 합성 공정 필드의 시계열 점검. 모델 실행 전 원천 공정 추세 검토
+- **Preprocess / Feature Engineering** — 원천 행에서 선택된 피처 필드와 피처 미리보기로의 전환. 모델 실행 전 구조화된 전처리가 필요하다는 개념을 보여줌
+- **Algorithm Selection** — Isolation Forest, AutoEncoder, Random Forest 데모 옵션 및 데이터셋 활성 정책 선택
+- **Model Training / Run Policy** — 선택된 데이터셋, 활성 정책, 피처 데이터셋 설정, 선택된 컬럼, 데모 모델 실행 맥락 (결정론적·로컬 전용)
+- **Anomaly Detection** — 실행 선택, 이상 점수, 헬스 인덱스, 상태 분포, 결과 테이블. 모델 출력이 운영 결과 뷰로 변환되는 방식을 보여줌
+- **Threshold Alert** — 합성 임계값 이벤트 및 확인(acknowledgement) 상태
+- **Supervised Learning Result** — 합성 분류 지표, 혼동 행렬, 예측 분포, 피처 중요도, 예측 행
 
-## 8. AI Analysis Flow
+## 7. 담당 역할
 
-The demo presents the AI workflow through several screens.
+- 제조 AI 워크플로 분석 및 공개 데모 구조로의 변환
+- 원천 공정 데이터가 필터링·피처 생성·모델 실행·결과 시각화로 이동하는 방식 설계
+- 공개 배포용 합성 데이터셋 구조 설계
+- 공개 안전 데이터셋 키, 설비 ID, 실행 ID, 결과 식별자 정의
+- 로컬 데모 워크플로 구현 및 검증
+- React 화면 구현(AI 개요, 전처리, 알고리즘 선택, 모델 실행, 이상 결과, 임계값 알림, 지도학습 결과, 시계열 탐색)
+- Spring Boot 데모 API 구현(데이터셋, 대시보드, 모델, 결과, 전처리)
+- 데모 API 구조와 FastAPI AI 실행 서비스 연결
+- 반복 가능한 로컬 스크린샷용 MongoDB 시드 데이터 준비
+- 운영 특화 식별자·비공개 런타임 값 제거
+- 아키텍처, 보안 경계, AI 파이프라인, 로컬 런타임 문서화
+- 비공개 소스 복사가 아닌 합성 포트폴리오 프로젝트로 공개 저장소 재구성
 
-### AI Overview
+## 8. 결과
 
-The AI Overview screen summarizes active demo models, recent model run state, demo dataset status, and signal highlights.
+실행 가능한 로컬 제조 AI 워크플로를 제공합니다. 구현 내용:
 
-### Data Exploration
+- 원천→결과 전 구간 AI 분석 파이프라인
+- 로컬 Spring Boot + React + FastAPI 아키텍처
+- MongoDB 기반 합성 제조 데이터
+- 피처 미리보기 및 모델 정책 개념
+- 이상 탐지 결과 시각화, 임계값 알림 검토, 지도학습 결과 검토
+- AI 운영 대시보드 구조
+- 포트폴리오 안전 문서 및 스크린샷
 
-The Data Exploration screen provides time-series inspection for synthetic process fields. It helps users review raw process trends before model execution.
+운영 ML 플랫폼이 아니라, 핵심 시스템 설계와 학습 과정을 전달하는 공개 포트폴리오 산출물입니다.
 
-### Preprocess / Feature Engineering
+## 9. 배운 점 및 공개 범위
 
-The Preprocess screen shows the transition from raw rows to selected feature fields and feature preview.
+이 저장소는 운영 프로젝트가 아니라, 동일한 엔지니어링 개념(제조 AI 분석 아키텍처, 원천 데이터 탐색, 전처리·피처 엔지니어링, 데이터셋·알고리즘 정책 관리, 모델 실행 결과 추적, 이상 탐지 검토, 임계값·지도학습 결과 검토, 합성 데이터 생성, 로컬 런타임)을 정제해 재구성한 버전입니다.
 
-This demonstrates the idea that manufacturing AI workflows require structured preprocessing before model execution.
+프로젝트에서 얻은 핵심 교훈:
 
-### Algorithm Selection
+- 제조 데이터는 모델링 전에 해석되어야 한다.
+- 원천 레코드와 피처 준비 데이터셋을 분리해야 한다.
+- 피처 생성 규칙은 가시적이고 재현 가능해야 한다.
+- 알고리즘 선택은 모델 실행 정책과 연결되어야 한다.
+- AI 결과는 대시보드 수준의 설명이 필요하다.
+- 이상 탐지와 지도학습은 서로 다른 결과 뷰를 요구한다.
+- 운영 시스템의 공개 포트폴리오 버전은 비공개 소스 복사가 아니라 합성 데이터와 정제된 아키텍처로 만들어야 한다.
+- 로컬 런타임 문서화는 포트폴리오 신뢰도를 높인다.
+- 포트폴리오는 화면뿐 아니라 그 뒤의 데이터·모델 흐름까지 보여줘야 한다.
 
-The Algorithm Selection screen shows demo algorithm options such as Isolation Forest, AutoEncoder, and Random Forest.
-
-It also introduces the idea of selecting an active policy for a dataset.
-
-### Model Training / Run Policy
-
-The Model Training screen shows the selected dataset, active policy, feature dataset configuration, selected columns, and demo model run context.
-
-In the public demo, this is deterministic and local-only.
-
-### Anomaly Detection
-
-The Anomaly Detection screen shows run selection, anomaly score, health index, status distribution, and result table.
-
-This screen demonstrates how model output can be translated into an operational result view.
-
-### Threshold Alert
-
-The Threshold Alert screen shows synthetic threshold events and acknowledgement status.
-
-### Supervised Learning Result
-
-The Supervised Learning Result screen shows synthetic classification metrics, confusion matrix, prediction distribution, feature importance, and prediction rows.
-
-## 9. Key Features
-
-The public demo includes:
-
-* Demo login flow
-* Home dashboard
-* AI operation overview
-* Synthetic manufacturing dataset selection
-* Time-series data exploration
-* Raw data preview
-* Feature engineering preview
-* Algorithm selection
-* Model run policy review
-* Anomaly result table
-* Threshold alert list
-* Supervised learning metric dashboard
-* Synthetic MongoDB seed loader
-* Public safety scan script
-* Mermaid architecture and pipeline diagrams
-* Public release documentation
-
-## 10. My Role
-
-My responsibilities included:
-
-* Analyzing the manufacturing AI workflow and translating it into a public demo structure.
-* Reviewing how raw process data should move through filtering, feature generation, model execution, and result visualization.
-* Designing the synthetic dataset structure for public release.
-* Defining public-safe dataset keys, equipment IDs, run IDs, and result identifiers.
-* Implementing and validating the local demo workflow.
-* Building React screens for AI overview, preprocessing, algorithm selection, model run, anomaly result, threshold alert, supervised result, and time-series exploration.
-* Implementing Spring Boot demo APIs for dataset, dashboard, model, result, and preprocessing workflows.
-* Connecting the demo API structure to a FastAPI AI execution service.
-* Preparing MongoDB seed data for repeatable local screenshots.
-* Removing or avoiding production-specific identifiers and private runtime values.
-* Documenting the architecture, security boundary, AI pipeline, and local runtime.
-* Rebuilding the public repository as a synthetic portfolio project rather than copying private project source code.
-
-## 11. Results
-
-The public demo provides an executable local manufacturing AI workflow.
-
-It demonstrates:
-
-* A full raw-to-result AI analytics pipeline
-* A local Spring Boot + React + FastAPI architecture
-* MongoDB-backed synthetic manufacturing data
-* Feature preview and model policy concepts
-* Anomaly detection result visualization
-* Threshold alert review
-* Supervised learning result review
-* AI operation dashboard structure
-* Portfolio-safe documentation and screenshots
-
-The result is not a production ML platform, but a public portfolio artifact that communicates the core system design and learning process.
-
-## 12. Public Demo Relationship
-
-This repository is not the production project.
-
-It is a sanitized rebuild designed to demonstrate the same engineering concepts:
-
-* Manufacturing AI analytics architecture
-* Raw data exploration
-* Preprocessing and feature engineering
-* Dataset and algorithm policy management
-* Model run result tracking
-* Anomaly detection review
-* Threshold and supervised learning result review
-* Synthetic data generation
-* Local runtime testing
-* Public release safety boundaries
-
-The following are excluded:
-
-* Production source code
-* Production database connections
-* Customer information
-* Real equipment data
-* Real process data
-* Server addresses
-* Private access material
-* Logs
-* Model artifacts
-* Private Git history
-* Production screenshots
-
-## 13. Learning Notes
-
-This project also reflects a practical learning process around manufacturing AI modeling.
-
-The learning focus was not only how to run a model, but how to prepare manufacturing data so that model results can be understood and reviewed through a system.
-
-Key learning points:
-
-* Manufacturing data must be interpreted before modeling.
-* Raw records should be separated from feature-ready datasets.
-* Feature generation rules should be visible and repeatable.
-* Algorithm selection should be connected to model run policy.
-* AI results need dashboard-level explanation.
-* Anomaly detection and supervised learning require different result views.
-* Public portfolio versions should use synthetic data and sanitized architecture.
-
-The project helped connect manufacturing AI study topics with an implemented web-based demo.
-
-## 14. Lessons Learned
-
-Key lessons from the project:
-
-* Manufacturing AI platforms require clear separation between raw data, features, model runs, and results.
-* Data exploration is necessary before preprocessing and model execution.
-* Preprocessing and filtering rules should be made visible to users.
-* AI result screens should explain model output in operational terms.
-* Synthetic public demos are safer and more maintainable than copied production repositories.
-* Local runtime documentation improves portfolio credibility.
-* A portfolio project should show not only screens, but also the data and model flow behind those screens.
+다음 항목은 의도적으로 제외했습니다: 운영 소스코드, 운영 DB 연결, 고객 정보, 실제 설비·공정 데이터, 서버 주소, 비공개 접근 자료, 로그, 모델 아티팩트, 비공개 Git 히스토리, 운영 스크린샷.
