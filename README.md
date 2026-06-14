@@ -1,106 +1,176 @@
 # ML Studio / Insight View Demo
 
-Synthetic manufacturing AI analysis platform demo built with a Spring Boot backend, MongoDB sample dataset, FastAPI model execution server, and React frontend.
+Public portfolio demo for a manufacturing ML analytics studio.
 
-This repository is a public, rebuilt demo project. It is not a copy of production source code and does not include production data, customer data, real database connections, production equipment history, server IP addresses, private credentials, logs, certificates, or private environment values.
+This repository demonstrates a local synthetic version of an ML Studio / Insight View workflow using a React dashboard, Spring Boot API, FastAPI model execution service, MongoDB seed data, and public-safe documentation. It is designed to show how a manufacturing AI analysis pipeline can be structured from raw process data to preprocessing, feature engineering, algorithm selection, model execution, anomaly detection, threshold alert review, and supervised learning result visualization.
 
-All data in this repository is synthetic sample data.
+This repository is a rebuilt public demo. It is not a production operations repository and is not a copy of private source code or production data.
+
+## Demo Notice
+
+All names, identifiers, timestamps, equipment, lots, parts, users, metrics, and model outputs in this repository are synthetic demo data.
+
+Public-safe identifiers use `DEMO-*`, for example:
+
+* `DEMO-MC-001`
+* `DEMO-LOT-001`
+* `DEMO-PART-001`
+* `DEMO-RUN-IF-001`
+* `DEMO_DATASET_MANUFACTURING_AI`
+
+The repository intentionally excludes production source code, production screenshots, customer-specific information, real process data, real equipment identifiers, private database connection values, server addresses, logs, model artifacts, deployment history, and private access material.
 
 ## Production & Learning Background
 
 This public demo was rebuilt from experience gained during a deployed manufacturing AI analytics project and related manufacturing AI modeling study.
 
-The original project focused on building an AI-assisted manufacturing data analysis platform for process data exploration, preprocessing, feature generation, anomaly detection, threshold alerts, supervised learning result review, and AI operation monitoring.
+The original project focused on building an AI-assisted manufacturing data analysis platform for:
 
-During the project, the main technical focus was not only displaying collected manufacturing data, but also designing an analysis pipeline that could transform raw process records into AI-ready features and interpretable result screens.
+* Manufacturing process data exploration
+* Raw data filtering and preprocessing
+* Feature generation for AI analysis
+* Unsupervised anomaly detection
+* Threshold-based alert monitoring
+* Supervised learning result review
+* AI operation status monitoring
+* Field-readable visualization of AI analysis results
 
-The work was developed while studying practical manufacturing AI modeling topics such as:
+The main technical challenge was not only displaying collected process data, but also designing a pipeline that could transform raw manufacturing records into AI-ready features and interpretable result screens.
+
+The implementation and study process focused on practical manufacturing AI topics:
 
 * Manufacturing process data structure analysis
-* Raw data filtering and preprocessing
-* Feature engineering for time-windowed process data
-* Unsupervised anomaly detection
+* Sensor and process variable filtering
+* Time-windowed feature engineering
+* Unsupervised anomaly detection workflow
 * Supervised classification result interpretation
-* Threshold-based alert design
-* AI model operation monitoring
+* Threshold alert design
+* AI model run monitoring
 * Manufacturing data visualization for field users
 
-This repository is not a one-to-one copy of the production system. It preserves the main engineering concepts while replacing production-specific implementation details with synthetic data, simplified local runtime components, demo-safe APIs, and public portfolio screens.
-
-Production source code, production screenshots, customer-specific information, server addresses, credentials, private Git history, and real equipment data are intentionally excluded.
+The public demo converts those concepts into a local, synthetic, portfolio-safe application.
 
 ## Demo Scope
 
-The demo shows a synthetic manufacturing AI workflow using a local-only stack:
+The demo shows a synthetic manufacturing AI workflow using a local-only stack.
 
-* Manufacturing dataset selection
-* Raw process data exploration
-* Time-series trend visualization
-* Preprocessing and feature preview
-* Feature engineering workflow
-* Algorithm selection
-* Model run policy review
-* Anomaly detection result review
-* Threshold alert review
-* Supervised learning result summary
-* AI operation overview dashboard
+Implemented demo surfaces:
 
-The demo is designed to explain how a manufacturing AI analysis platform can be structured from raw data to model result visualization.
+* Home Dashboard: `/`
+* AI Overview: `/ai/overview`
+* Preprocess / Feature Engineering: `/operation/preprocess`
+* Algorithm Selection: `/operation/algorithm`
+* Model Training / Run Policy: `/operation/modeltrain`
+* Anomaly Detection Result: `/ai/anomaly`
+* Threshold Alert: `/ai/threshold-alert`
+* Supervised Learning Result: `/ai/supervised-result`
+* Data Exploration: `/data-exploration` redirects to `/data-exploration/timeseries`
 
-It is not intended to provide production-grade model accuracy, production scheduling, real equipment integration, or customer-specific process logic.
+The frontend calls the Spring Boot API through `VITE_API_BASE_URL`. The application also includes demo-safe fallback behavior where useful for local portfolio review.
 
-## AI Pipeline
-
-The main demo pipeline is:
-
-```text
-Synthetic Manufacturing Raw Data
-        ↓
-MongoDB Demo Dataset
-        ↓
-Data Exploration
-        ↓
-Preprocessing / Filtering
-        ↓
-Feature Engineering
-        ↓
-Algorithm Selection
-        ↓
-Model Run / Execution Policy
-        ↓
-Anomaly Detection Result
-        ↓
-Threshold Alert / Supervised Result Review
-        ↓
-AI Operation Dashboard
-```
-
-The public demo focuses on making this pipeline visible through screens and API responses.
-
-### Pipeline Stages
-
-| Stage               | Description                                                       |
-| ------------------- | ----------------------------------------------------------------- |
-| Raw Data            | Synthetic manufacturing process records stored in MongoDB         |
-| Data Exploration    | Time-series chart and field-level process trend review            |
-| Preprocessing       | Dataset, equipment, column, and preview-based filtering workflow  |
-| Feature Engineering | Synthetic window-based feature preview and feature dataset review |
-| Algorithm Selection | Demo policy for Isolation Forest, AutoEncoder, and Random Forest  |
-| Model Run           | Synthetic model run records and active policy summary             |
-| Anomaly Detection   | Anomaly score, status distribution, and result table              |
-| Threshold Alert     | Demo threshold alert summary and alert list                       |
-| Supervised Result   | Synthetic classification metrics and prediction distribution      |
-| AI Overview         | Active model, recent run, signal highlight, and result summary    |
+This demo is not intended to provide production-grade model accuracy, production scheduling, real equipment integration, or customer-specific process logic. Its purpose is to make the manufacturing AI workflow visible and reviewable.
 
 ## Tech Stack
 
-* Spring Boot API
-* FastAPI AI execution server
-* Vite + React + TypeScript frontend
-* MongoDB
-* Python seed script
-* Docker Compose
-* Recharts / chart-based dashboard components
+* Web: React, TypeScript, Vite, MUI
+* API: Java 17, Spring Boot, Gradle
+* AI server: Python, FastAPI, deterministic demo model execution
+* Data: MongoDB-compatible seed JSON under `demo-data/seed`
+* Runtime: Docker Compose, local MongoDB
+* Documentation: Markdown, Mermaid diagrams
+* Visualization: chart-based dashboard components
+
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph User["Portfolio Reviewer"]
+        Browser[Web Browser]
+    end
+
+    subgraph Frontend["apps/web - React + TypeScript"]
+        UI[ML Studio / Insight View UI]
+        Pages[Dashboard / Preprocess / Algorithm / Model Run / Results]
+    end
+
+    subgraph Backend["apps/api - Spring Boot Demo API"]
+        Api[REST API Layer]
+        Services[Demo Services]
+        Policy[Dataset / Model Policy Resolver]
+    end
+
+    subgraph AI["apps/ai-server - FastAPI Demo AI Server"]
+        IF[Isolation Forest]
+        AE[AutoEncoder]
+        RF[Random Forest]
+    end
+
+    subgraph Data["MongoDB - ml_studio_demo"]
+        Raw[THISHMIDATA]
+        Feature[thisfeature]
+        Run[thismodelrun]
+        Result[thisanomalyresult]
+        Alert[thisthresholdalert]
+        Supervised[thisclassificationresult / thismodeleval]
+    end
+
+    subgraph Seed["Synthetic Seed Data"]
+        SeedFiles[demo-data/seed]
+        SeedScript[scripts/seed-demo-data.py]
+    end
+
+    Browser --> UI
+    UI --> Pages
+    Pages --> Api
+    Api --> Services
+    Services --> Policy
+    Services <--> Data
+    Services --> AI
+    IF --> Services
+    AE --> Services
+    RF --> Services
+    SeedFiles --> SeedScript
+    SeedScript --> Data
+```
+
+The Spring Boot API acts as the demo facade between the React UI, MongoDB demo dataset, and FastAPI model execution server. The public demo uses synthetic seed data and deterministic demo responses to show the AI workflow without exposing production data, infrastructure, or private model configuration.
+
+## AI Pipeline
+
+```mermaid
+flowchart TD
+    A[Synthetic Manufacturing Raw Data] --> B[MongoDB Demo Dataset]
+    B --> C[Data Exploration]
+    C --> D[Preprocessing / Filtering]
+    D --> E[Feature Engineering]
+    E --> F[Algorithm Selection]
+    F --> G[Model Run / Execution Policy]
+    G --> H[Anomaly Detection Result]
+    H --> I[Threshold Alert Review]
+    G --> J[Supervised Result Review]
+    I --> K[AI Operation Dashboard]
+    J --> K
+
+    C -. visualized by .-> C1[Time-Series Trend]
+    D -. preview .-> D1[Raw Preview / Selected Fields]
+    E -. generates .-> E1[Window-Based Feature Preview]
+    H -. explains .-> H1[Score / Status / Health Index]
+```
+
+### Pipeline Stages
+
+| Stage                     | Description                                                                  |
+| ------------------------- | ---------------------------------------------------------------------------- |
+| Raw Data                  | Synthetic manufacturing process records stored in MongoDB                    |
+| Data Exploration          | Time-series trend review and field-level process data inspection             |
+| Preprocessing / Filtering | Dataset, equipment, time range, and field selection workflow                 |
+| Feature Engineering       | Window-based synthetic feature preview and feature dataset review            |
+| Algorithm Selection       | Demo policy selection for Isolation Forest, AutoEncoder, and Random Forest   |
+| Model Run                 | Synthetic model run records and active execution policy summary              |
+| Anomaly Detection         | Anomaly score, status distribution, health index, and result table           |
+| Threshold Alert           | Threshold-based alert summary and alert list                                 |
+| Supervised Result         | Synthetic classification metrics, prediction distribution, and result review |
+| AI Overview               | Active model, recent run, signal highlight, and AI operation summary         |
 
 ## Screenshots
 
@@ -128,50 +198,118 @@ The public demo focuses on making this pipeline visible through screens and API 
 
 ![Time-Series Data Exploration](screenshots/timeseries-data-exploration.png)
 
-## Architecture
+### Supervised Learning Result
 
-```text
-Synthetic Sample Data
-        ↓
-MongoDB
-        ↓
-Spring Boot Demo API
-        ↓
-FastAPI Demo AI Server
-        ↓
-React ML Studio / Insight View Dashboard
+![Supervised Learning Result](screenshots/supervised-result.png)
+
+## Local Run
+
+### 1. Start MongoDB
+
+```powershell
+docker compose up -d mongo
 ```
 
-The production project followed the same general concept, but used operational manufacturing data, internal configuration, deployment-specific infrastructure, and production security boundaries that are not included in this repository.
+### 2. Load synthetic seed data
 
-## Local Demo Flow
+```powershell
+python scripts\seed-demo-data.py --dry-run
+python scripts\seed-demo-data.py --uri mongodb://localhost:27017 --db ml_studio_demo
+```
 
-1. Start local MongoDB.
-2. Load synthetic demo seed data.
-3. Run the FastAPI AI server.
-4. Run the Spring Boot backend API.
-5. Run the React frontend.
-6. Open the dashboard and review the synthetic AI workflow.
+### 3. Start the AI server
+
+```powershell
+cd apps\ai-server
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --host 0.0.0.0 --port 8001
+```
+
+Default local AI server port: `8001`.
+
+Health check:
+
+```powershell
+Invoke-RestMethod http://localhost:8001/health
+```
+
+### 4. Start the Spring Boot API
+
+Open a new PowerShell session:
+
+```powershell
+cd apps\api
+.\gradlew.bat bootRun
+```
+
+Default local API port: `8090`.
+
+Health check:
+
+```powershell
+Invoke-RestMethod http://localhost:8090/api/health
+```
+
+### 5. Start the frontend
+
+Open another PowerShell session:
+
+```powershell
+cd apps\web
+npm install
+npm run dev
+```
+
+Default local web port: `5173`.
+
+Open:
+
+```text
+http://localhost:5173
+```
+
+### Demo Login
+
+Use either option:
+
+* Account: `admin / admin`
+* Button: `Demo Login`
 
 ## Sample Data
 
-Load local synthetic sample data with:
+Synthetic seed data is stored under:
+
+```text
+demo-data/seed
+```
+
+Load it with:
 
 ```powershell
 python scripts\seed-demo-data.py --uri mongodb://localhost:27017 --db ml_studio_demo
 ```
 
-The generated records are fake demo records only. They are not copied from real production systems.
+The canonical public demo dataset key is:
+
+```text
+DEMO_DATASET_MANUFACTURING_AI
+```
 
 Main synthetic collections include:
 
 * `THISHMIDATA`
 * `TMSTMC`
 * `tmst_dataset_config`
+* `tmst_data_type_mst`
+* `tmst_data_type`
+* `tmst_data_type_dtl`
 * `tmst_feature_mst`
 * `thisfeature`
 * `tmst_algo_mst`
 * `tmst_algo_dtl`
+* `tmst_map_algo`
+* `tmst_param_mst`
+* `tmst_map_algo_param`
 * `tmst_model_policy`
 * `tmst_model_active`
 * `thismodelrun`
@@ -180,23 +318,23 @@ Main synthetic collections include:
 * `thisclassificationresult`
 * `thismodeleval`
 
-The canonical public demo dataset key is:
-
-```text
-DEMO_DATASET_MANUFACTURING_AI
-```
+The seed data is deterministic enough for repeatable local screenshots and dashboard review.
 
 ## Backend API
 
-The Spring Boot backend lives in `apps/api/` and exposes demo-safe APIs over synthetic MongoDB collections.
+The Spring Boot backend lives in:
+
+```text
+apps/api
+```
 
 Configuration defaults:
 
 * Java 17
 * Spring Boot 3.x
-* Server port `8090`
-* MongoDB URI `${MONGODB_URI:mongodb://localhost:27017/ml_studio_demo}`
-* CORS origin `http://localhost:5173`
+* Server port: `8090`
+* MongoDB URI: `${MONGODB_URI:mongodb://localhost:27017/ml_studio_demo}`
+* CORS origin: `http://localhost:5173`
 
 Run:
 
@@ -214,19 +352,33 @@ cd apps\api
 
 Representative API areas:
 
-* `/api/health`
-* `/api/home/dashboard`
-* `/api/data-exploration/datasets`
-* `/api/data-exploration/timeseries/*`
-* `/api/preprocess/*`
-* `/api/algorithms/selection`
-* `/api/modeltrain/*`
-* `/api/threshold-alert/*`
-* `/api/supervised/result/*`
+* `GET /api/health`
+* `GET /api/home/dashboard`
+* `GET /api/modeltrain/overview`
+* `GET /api/modeltrain/anomaly/runs`
+* `GET /api/modeltrain/anomaly/results`
+* `GET /api/threshold-alert/summary`
+* `GET /api/threshold-alert/list`
+* `GET /api/supervised/result/runs`
+* `GET /api/supervised/result/summary`
+* `GET /api/supervised/result/predictions`
+* `GET /api/data-exploration/datasets`
+* `GET /api/data-exploration/timeseries/fields`
+* `POST /api/data-exploration/timeseries/query`
+* `GET /api/preprocess/data-sources`
+* `GET /api/preprocess/raw-preview`
+* `GET /api/preprocess/features`
+* `GET /api/algorithms/selection`
+* `GET /api/algorithm/params`
+* `GET /api/equipment/master`
 
 ## AI Server
 
-The FastAPI AI server lives in `apps/ai-server/`.
+The FastAPI AI server lives in:
+
+```text
+apps/ai-server
+```
 
 It provides demo-safe model execution endpoints for the synthetic pipeline:
 
@@ -238,6 +390,7 @@ Run:
 
 ```powershell
 cd apps\ai-server
+python -m pip install -r requirements.txt
 python -m uvicorn main:app --host 0.0.0.0 --port 8001
 ```
 
@@ -248,11 +401,22 @@ cd apps\ai-server
 python -m compileall .
 ```
 
+Representative AI server endpoints:
+
+* `GET /health`
+* `POST /api/model/execute/isolation-forest`
+* `POST /api/model/execute/autoencoder`
+* `POST /api/model/execute/random-forest`
+
 The AI server is used for local demonstration only. It does not include production model files, production training data, or customer-specific model parameters.
 
 ## Frontend
 
-The React frontend lives in `apps/web/`.
+The React frontend lives in:
+
+```text
+apps/web
+```
 
 Run:
 
@@ -262,12 +426,6 @@ npm install
 npm run dev
 ```
 
-Open:
-
-```text
-http://localhost:5173
-```
-
 Build:
 
 ```powershell
@@ -275,53 +433,123 @@ cd apps\web
 npm run build
 ```
 
-The public demo includes a demo-safe login flow for portfolio review. It does not provide production authentication, customer accounts, user administration, or real authorization logic.
+The frontend includes a demo-safe login flow for portfolio review. It does not provide production authentication, customer accounts, user administration, or real authorization logic.
 
-## Local Runtime
+Key frontend screens:
 
-Run the full local demo:
+* Home Dashboard
+* AI Overview
+* Preprocess / Feature Engineering
+* Algorithm Selection
+* Model Training / Run Policy
+* Anomaly Detection Result
+* Threshold Alert
+* Supervised Learning Result
+* Time-Series Data Exploration
 
-```powershell
-docker compose up -d mongo
+## Repository Structure
+
+```text
+ml-studio-insight-view-demo
+├─ apps
+│  ├─ web
+│  ├─ api
+│  └─ ai-server
+├─ demo-data
+│  └─ seed
+├─ docs
+├─ screenshots
+├─ scripts
+├─ docker-compose.yml
+└─ README.md
 ```
 
-Load seed data:
+| Path                 | Description                                                                |
+| -------------------- | -------------------------------------------------------------------------- |
+| `apps/web`           | React + Vite dashboard                                                     |
+| `apps/api`           | Spring Boot demo API                                                       |
+| `apps/ai-server`     | FastAPI demo model execution service                                       |
+| `demo-data/seed`     | Synthetic JSON seed data                                                   |
+| `docs`               | Architecture, API, schema, data notice, security, and case study documents |
+| `screenshots`        | Public synthetic demo screenshots used in README                           |
+| `scripts`            | Seed loader and public safety scanner                                      |
+| `docker-compose.yml` | Local demo stack                                                           |
+
+## Validation
+
+Run the public safety scan:
 
 ```powershell
-python scripts\seed-demo-data.py --uri mongodb://localhost:27017 --db ml_studio_demo
+powershell -ExecutionPolicy Bypass -File scripts\scan-public-safety.ps1
 ```
 
-Start the AI server:
-
-```powershell
-cd apps\ai-server
-python -m uvicorn main:app --host 0.0.0.0 --port 8001
-```
-
-Start the backend API:
-
-```powershell
-cd apps\api
-.\gradlew.bat bootRun
-```
-
-Start the frontend:
+Run frontend build:
 
 ```powershell
 cd apps\web
-npm install
-npm run dev
+npm run build
 ```
 
-Open:
+Run backend build:
+
+```powershell
+cd apps\api
+.\gradlew.bat build -x test
+```
+
+Run AI server compile check:
+
+```powershell
+cd apps\ai-server
+python -m compileall .
+```
+
+Run seed dry-run:
+
+```powershell
+python scripts\seed-demo-data.py --dry-run
+```
+
+## Security And Data Policy
+
+This repository intentionally excludes:
+
+* Production endpoints
+* Private database URI values
+* Private access material
+* Real customer or facility names
+* Real equipment IDs
+* Real lots or parts
+* Real process records
+* Runtime logs
+* Model artifacts
+* Deployment history
+* Private repository history
+
+`.env.example` contains localhost-only dummy values.
+
+Do not add production `.env` files, database dumps, logs, customer screenshots, real model artifacts, or production configuration files.
+
+Use only synthetic demo data in:
 
 ```text
-http://localhost:5173
+demo-data/seed
 ```
+
+Use only public synthetic screenshots in:
+
+```text
+screenshots
+```
+
+See:
+
+* `docs/SECURITY.md`
+* `docs/DATA_NOTICE.md`
 
 ## Learning / Study Notes
 
-This project also documents a practical learning process around manufacturing AI.
+This repository also documents a practical learning process around manufacturing AI.
 
 The key study areas were:
 
@@ -335,23 +563,33 @@ The key study areas were:
 
 The purpose of this repository is to show both implementation and learning progression: understanding manufacturing data, building an AI analysis workflow, and presenting the results through a web-based system.
 
-## Security Notice
-
-* Do not add production `.env` files.
-* Do not add real DB URIs, server IPs, credentials, keys, certificates, logs, dumps, or customer screenshots.
-* Do not import private repository history.
-* Do not include production source code or production Git history.
-* Do not include real process data, real equipment identifiers, or real customer information.
-* Use only synthetic data in `demo-data/seed/`.
-
 ## Documentation
 
-| Document        | Description                                             |
-| --------------- | ------------------------------------------------------- |
-| Architecture    | System architecture and data flow overview              |
-| API Reference   | Backend API endpoints and response format               |
-| Data Schema     | MongoDB demo schema and collection structure            |
-| Security Notice | Security, anonymization, and disclosure policy          |
-| Data Notice     | Synthetic data and data handling notice                 |
-| Case Study      | Anonymized ML Studio / Insight View case study          |
-| Learning Notes  | Manufacturing AI preprocessing and modeling study notes |
+| Document                       | Description                                    |
+| ------------------------------ | ---------------------------------------------- |
+| `docs/SECURITY.md`             | Public release security and exclusion policy   |
+| `docs/DATA_NOTICE.md`          | Synthetic data notice and data handling policy |
+| `docs/ARCHITECTURE.md`         | Architecture and system data flow, if present  |
+| `docs/API.md`                  | API details, if present                        |
+| `docs/DATA_SCHEMA.md`          | Demo MongoDB schema, if present                |
+| `docs/CASE_STUDY_ML_STUDIO.md` | Anonymized project case study, if present      |
+
+## Public Demo Relationship
+
+This repository is a public synthetic rebuild. It demonstrates the main engineering concepts of a manufacturing ML analytics platform while replacing private implementation details with demo-safe data, local runtime defaults, and public documentation.
+
+The goal is to show the engineering workflow:
+
+```text
+Raw Manufacturing Data
+→ Data Exploration
+→ Preprocessing / Filtering
+→ Feature Engineering
+→ Algorithm Selection
+→ Model Run
+→ Anomaly Detection Result
+→ Threshold / Supervised Result Review
+→ AI Operation Dashboard
+```
+
+It should be reviewed as a portfolio demo, not as a production deployment package.
