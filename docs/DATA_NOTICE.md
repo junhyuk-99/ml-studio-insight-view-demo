@@ -1,17 +1,17 @@
-# Data Notice
+# 데이터 고지
 
-This repository contains synthetic demo data only.
+이 저장소는 합성 데모 데이터만 포함합니다.
 
-The seed files are not exports, samples, subsets, anonymized records, screenshots, logs, or transformed versions of production data. Numeric values and timestamps are arbitrary and exist only to make the dashboard and API runnable.
+시드 파일은 운영 데이터의 익스포트, 샘플, 부분집합, 익명화 레코드, 스크린샷, 로그, 변형 버전이 아닙니다. 수치 값과 타임스탬프는 임의의 값이며, 대시보드와 API를 실행 가능하게 만들기 위해서만 존재합니다.
 
-## Synthetic Data Rules
+## 합성 데이터 규칙
 
-- Use `DEMO-*` identifiers only.
-- Use `DEMO-MC-001`, `DEMO-MC-002`, and `DEMO-MC-003` for equipment.
-- Use `DEMO_DATASET_MANUFACTURING_AI` for the main dataset.
-- Use `DEMO-LOT-001` and `DEMO-PART-001` style values for lot and part references.
-- Keep all timestamps synthetic.
+- `DEMO-*` 식별자만 사용
+- 설비는 `DEMO-MC-001`, `DEMO-MC-002`, `DEMO-MC-003` 사용
+- 메인 데이터셋은 `DEMO_DATASET_MANUFACTURING_AI` 사용
+- LOT·부품 참조는 `DEMO-LOT-001`, `DEMO-PART-001` 형식 사용
+- 모든 타임스탬프는 합성 값으로 유지
 
-## Explicit Exclusions
+## 명시적 제외 항목
 
-No real customer, facility, equipment, operator, lot, product, server, database, credential, URL, log, or model artifact data is included.
+실제 고객, 시설, 설비, 작업자, LOT, 제품, 서버, 데이터베이스, 인증 정보, URL, 로그, 모델 아티팩트 데이터는 포함하지 않습니다.
