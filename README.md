@@ -1,86 +1,76 @@
 # ML Studio / Insight View Demo
 
-Public portfolio demo for a manufacturing ML analytics studio.
+제조 ML 분석 스튜디오의 공개 포트폴리오 데모입니다.
 
-This repository demonstrates a local synthetic version of an ML Studio / Insight View workflow using a React dashboard, Spring Boot API, FastAPI model execution service, MongoDB seed data, and public-safe documentation. It is designed to show how a manufacturing AI analysis pipeline can be structured from raw process data to preprocessing, feature engineering, algorithm selection, model execution, anomaly detection, threshold alert review, and supervised learning result visualization.
+React 대시보드, Spring Boot API, FastAPI 모델 실행 서비스, MongoDB 시드 데이터, 공개 안전 문서를 사용해 ML Studio / Insight View 워크플로의 로컬 합성 버전을 구현했습니다. 원천 공정 데이터에서 전처리, 피처 엔지니어링, 알고리즘 선택, 모델 실행, 이상 탐지, 임계값 알림 검토, 지도학습 결과 시각화에 이르는 제조 AI 분석 파이프라인이 어떻게 구성되는지 보여주도록 설계했습니다.
 
-This repository is a rebuilt public demo. It is not a production operations repository and is not a copy of private source code or production data.
+이 저장소는 공개용으로 재구성한 데모입니다. 운영 저장소가 아니며, 비공개 소스코드나 운영 데이터를 복사한 것이 아닙니다.
 
-## Demo Notice
+## 데모 고지
 
-All names, identifiers, timestamps, equipment, lots, parts, users, metrics, and model outputs in this repository are synthetic demo data.
+이 저장소의 모든 이름, 식별자, 타임스탬프, 설비, LOT, 부품, 사용자, 지표, 모델 출력은 합성 데모 데이터입니다.
 
-Public-safe identifiers use `DEMO-*`, for example:
+공개 안전 식별자는 `DEMO-*` 형식을 사용합니다. 예:
 
-* `DEMO-MC-001`
-* `DEMO-LOT-001`
-* `DEMO-PART-001`
-* `DEMO-RUN-IF-001`
-* `DEMO_DATASET_MANUFACTURING_AI`
+- `DEMO-MC-001`
+- `DEMO-LOT-001`
+- `DEMO-PART-001`
+- `DEMO-RUN-IF-001`
+- `DEMO_DATASET_MANUFACTURING_AI`
 
-The repository intentionally excludes production source code, production screenshots, customer-specific information, real process data, real equipment identifiers, private database connection values, server addresses, logs, model artifacts, deployment history, and private access material.
+운영 소스코드, 운영 스크린샷, 고객 정보, 실제 공정 데이터, 실제 설비 식별자, 비공개 DB 연결값, 서버 주소, 로그, 모델 아티팩트, 배포 이력, 비공개 접근 자료는 의도적으로 제외했습니다.
 
-## Production & Learning Background
+## 운영 및 학습 배경
 
-This public demo was rebuilt from experience gained during a deployed manufacturing AI analytics project and related manufacturing AI modeling study.
+이 데모는 운영·배포된 제조 AI 분석 프로젝트와 관련 제조 AI 모델링 학습 경험을 기반으로 재구성했습니다.
 
-The original project focused on building an AI-assisted manufacturing data analysis platform for:
+원본 프로젝트는 다음을 위한 AI 기반 제조 데이터 분석 플랫폼 구축에 집중했습니다: 제조 공정 데이터 탐색, 원천 데이터 필터링 및 전처리, AI 분석용 피처 생성, 비지도 이상 탐지, 임계값 기반 알림 모니터링, 지도학습 결과 검토, AI 운영 상태 모니터링, 현장에서 읽기 쉬운 AI 분석 결과 시각화.
 
-* Manufacturing process data exploration
-* Raw data filtering and preprocessing
-* Feature generation for AI analysis
-* Unsupervised anomaly detection
-* Threshold-based alert monitoring
-* Supervised learning result review
-* AI operation status monitoring
-* Field-readable visualization of AI analysis results
+핵심 기술 과제는 수집된 공정 데이터를 단순히 표시하는 것이 아니라, 원천 제조 레코드를 AI에 바로 쓸 수 있는 피처와 해석 가능한 결과 화면으로 변환하는 파이프라인을 설계하는 것이었습니다.
 
-The main technical challenge was not only displaying collected process data, but also designing a pipeline that could transform raw manufacturing records into AI-ready features and interpretable result screens.
+구현 및 학습 과정에서 다룬 실무 주제:
 
-The implementation and study process focused on practical manufacturing AI topics:
+- 원천 공정 데이터에서 의미 있는 제조 변수 식별
+- 데이터셋·설비·시간 범위·센서 필드 기준 공정 레코드 필터링
+- 시간 윈도 기반 피처 엔지니어링
+- 비지도 이상 탐지와 지도학습 분류 워크플로 비교
+- AI 출력을 원천 모델 결과가 아닌 현장 친화적 대시보드로 표현
+- 공개 데모 데이터와 비공개 운영 데이터 분리
+- 배포된 AI 플랫폼의 포트폴리오 안전 합성 버전 설계
 
-* Manufacturing process data structure analysis
-* Sensor and process variable filtering
-* Time-windowed feature engineering
-* Unsupervised anomaly detection workflow
-* Supervised classification result interpretation
-* Threshold alert design
-* AI model run monitoring
-* Manufacturing data visualization for field users
+공개 데모는 이 개념들을 로컬·합성·포트폴리오 안전 애플리케이션으로 변환한 것입니다.
 
-The public demo converts those concepts into a local, synthetic, portfolio-safe application.
+## 데모 범위
 
-## Demo Scope
+로컬 전용 스택으로 합성 제조 AI 워크플로를 보여줍니다.
 
-The demo shows a synthetic manufacturing AI workflow using a local-only stack.
+구현된 데모 화면:
 
-Implemented demo surfaces:
+- Home Dashboard: `/`
+- AI Overview: `/ai/overview`
+- Preprocess / Feature Engineering: `/operation/preprocess`
+- Algorithm Selection: `/operation/algorithm`
+- Model Training / Run Policy: `/operation/modeltrain`
+- Anomaly Detection Result: `/ai/anomaly`
+- Threshold Alert: `/ai/threshold-alert`
+- Supervised Learning Result: `/ai/supervised-result`
+- Data Exploration: `/data-exploration` (→ `/data-exploration/timeseries` 리다이렉트)
 
-* Home Dashboard: `/`
-* AI Overview: `/ai/overview`
-* Preprocess / Feature Engineering: `/operation/preprocess`
-* Algorithm Selection: `/operation/algorithm`
-* Model Training / Run Policy: `/operation/modeltrain`
-* Anomaly Detection Result: `/ai/anomaly`
-* Threshold Alert: `/ai/threshold-alert`
-* Supervised Learning Result: `/ai/supervised-result`
-* Data Exploration: `/data-exploration` redirects to `/data-exploration/timeseries`
+프론트엔드는 `VITE_API_BASE_URL`을 통해 Spring Boot API를 호출합니다. 로컬 포트폴리오 검토에 유용한 경우 데모 안전 fallback 동작도 포함합니다.
 
-The frontend calls the Spring Boot API through `VITE_API_BASE_URL`. The application also includes demo-safe fallback behavior where useful for local portfolio review.
+이 데모는 운영 수준 모델 정확도, 운영 스케줄링, 실제 설비 연동, 고객별 공정 로직을 제공하지 않습니다. 목적은 제조 AI 워크플로를 눈으로 보고 검토할 수 있게 하는 것입니다.
 
-This demo is not intended to provide production-grade model accuracy, production scheduling, real equipment integration, or customer-specific process logic. Its purpose is to make the manufacturing AI workflow visible and reviewable.
+## 기술 스택
 
-## Tech Stack
+- Web: React, TypeScript, Vite, MUI
+- API: Java 17, Spring Boot, Gradle
+- AI 서버: Python, FastAPI, 결정론적(deterministic) 데모 모델 실행
+- Data: `demo-data/seed`의 MongoDB 호환 시드 JSON
+- 런타임: Docker Compose, 로컬 MongoDB
+- 문서: Markdown, Mermaid 다이어그램
+- 시각화: 차트 기반 대시보드 컴포넌트
 
-* Web: React, TypeScript, Vite, MUI
-* API: Java 17, Spring Boot, Gradle
-* AI server: Python, FastAPI, deterministic demo model execution
-* Data: MongoDB-compatible seed JSON under `demo-data/seed`
-* Runtime: Docker Compose, local MongoDB
-* Documentation: Markdown, Mermaid diagrams
-* Visualization: chart-based dashboard components
-
-## Architecture
+## 아키텍처
 
 ```mermaid
 flowchart LR
@@ -133,9 +123,9 @@ flowchart LR
     SeedScript --> Data
 ```
 
-The Spring Boot API acts as the demo facade between the React UI, MongoDB demo dataset, and FastAPI model execution server. The public demo uses synthetic seed data and deterministic demo responses to show the AI workflow without exposing production data, infrastructure, or private model configuration.
+Spring Boot API는 React UI, MongoDB 데모 데이터셋, FastAPI 모델 실행 서버 사이의 데모 파사드 역할을 합니다. 공개 데모는 합성 시드 데이터와 결정론적 데모 응답으로 AI 워크플로를 보여주며, 운영 데이터·인프라·비공개 모델 구성을 노출하지 않습니다.
 
-## AI Pipeline
+## AI 파이프라인
 
 ```mermaid
 flowchart TD
@@ -157,22 +147,22 @@ flowchart TD
     H -. explains .-> H1[Score / Status / Health Index]
 ```
 
-### Pipeline Stages
+### 파이프라인 단계
 
-| Stage                     | Description                                                                  |
-| ------------------------- | ---------------------------------------------------------------------------- |
-| Raw Data                  | Synthetic manufacturing process records stored in MongoDB                    |
-| Data Exploration          | Time-series trend review and field-level process data inspection             |
-| Preprocessing / Filtering | Dataset, equipment, time range, and field selection workflow                 |
-| Feature Engineering       | Window-based synthetic feature preview and feature dataset review            |
-| Algorithm Selection       | Demo policy selection for Isolation Forest, AutoEncoder, and Random Forest   |
-| Model Run                 | Synthetic model run records and active execution policy summary              |
-| Anomaly Detection         | Anomaly score, status distribution, health index, and result table           |
-| Threshold Alert           | Threshold-based alert summary and alert list                                 |
-| Supervised Result         | Synthetic classification metrics, prediction distribution, and result review |
-| AI Overview               | Active model, recent run, signal highlight, and AI operation summary         |
+| 단계 | 설명 |
+| --- | --- |
+| Raw Data | MongoDB에 저장된 합성 제조 공정 레코드 |
+| Data Exploration | 시계열 추세 검토 및 필드 단위 공정 데이터 점검 |
+| Preprocessing / Filtering | 데이터셋·설비·시간 범위·필드 선택 워크플로 |
+| Feature Engineering | 윈도 기반 합성 피처 미리보기 및 피처 데이터셋 검토 |
+| Algorithm Selection | Isolation Forest, AutoEncoder, Random Forest 데모 정책 선택 |
+| Model Run | 합성 모델 실행 레코드 및 활성 실행 정책 요약 |
+| Anomaly Detection | 이상 점수, 상태 분포, 헬스 인덱스, 결과 테이블 |
+| Threshold Alert | 임계값 기반 알림 요약 및 알림 목록 |
+| Supervised Result | 합성 분류 지표, 예측 분포, 결과 검토 |
+| AI Overview | 활성 모델, 최근 실행, 신호 하이라이트, AI 운영 요약 |
 
-## Screenshots
+## 스크린샷
 
 ### AI Operation Overview
 
@@ -202,22 +192,22 @@ flowchart TD
 
 ![Supervised Learning Result](screenshots/supervised-result.png)
 
-## Local Run
+## 로컬 실행
 
-### 1. Start MongoDB
+### 1. MongoDB 시작
 
 ```powershell
 docker compose up -d mongo
 ```
 
-### 2. Load synthetic seed data
+### 2. 합성 시드 데이터 로드
 
 ```powershell
 python scripts\seed-demo-data.py --dry-run
 python scripts\seed-demo-data.py --uri mongodb://localhost:27017 --db ml_studio_demo
 ```
 
-### 3. Start the AI server
+### 3. AI 서버 시작
 
 ```powershell
 cd apps\ai-server
@@ -225,34 +215,30 @@ python -m pip install -r requirements.txt
 python -m uvicorn main:app --host 0.0.0.0 --port 8001
 ```
 
-Default local AI server port: `8001`.
-
-Health check:
+기본 AI 서버 포트: `8001`. 헬스 체크:
 
 ```powershell
 Invoke-RestMethod http://localhost:8001/health
 ```
 
-### 4. Start the Spring Boot API
+### 4. Spring Boot API 시작
 
-Open a new PowerShell session:
+새 PowerShell 세션에서:
 
 ```powershell
 cd apps\api
 .\gradlew.bat bootRun
 ```
 
-Default local API port: `8090`.
-
-Health check:
+기본 API 포트: `8090`. 헬스 체크:
 
 ```powershell
 Invoke-RestMethod http://localhost:8090/api/health
 ```
 
-### 5. Start the frontend
+### 5. 프론트엔드 시작
 
-Open another PowerShell session:
+또 다른 PowerShell 세션에서:
 
 ```powershell
 cd apps\web
@@ -260,337 +246,187 @@ npm install
 npm run dev
 ```
 
-Default local web port: `5173`.
+기본 웹 포트: `5173`. 접속: `http://localhost:5173`
 
-Open:
+### 데모 로그인
 
-```text
-http://localhost:5173
-```
+다음 중 하나 사용:
 
-### Demo Login
+- 계정: `admin / admin`
+- 버튼: `Demo Login`
 
-Use either option:
+## 샘플 데이터
 
-* Account: `admin / admin`
-* Button: `Demo Login`
-
-## Sample Data
-
-Synthetic seed data is stored under:
-
-```text
-demo-data/seed
-```
-
-Load it with:
+합성 시드 데이터는 `demo-data/seed`에 저장되어 있으며, 다음으로 로드합니다:
 
 ```powershell
 python scripts\seed-demo-data.py --uri mongodb://localhost:27017 --db ml_studio_demo
 ```
 
-The canonical public demo dataset key is:
+공개 데모 데이터셋 키: `DEMO_DATASET_MANUFACTURING_AI`
+
+주요 합성 컬렉션:
 
 ```text
-DEMO_DATASET_MANUFACTURING_AI
+THISHMIDATA, TMSTMC, tmst_dataset_config, tmst_data_type_mst,
+tmst_data_type, tmst_data_type_dtl, tmst_feature_mst, thisfeature,
+tmst_algo_mst, tmst_algo_dtl, tmst_map_algo, tmst_param_mst,
+tmst_map_algo_param, tmst_model_policy, tmst_model_active, thismodelrun,
+thisanomalyresult, thisthresholdalert, thisclassificationresult, thismodeleval
 ```
 
-Main synthetic collections include:
+시드 데이터는 반복적인 로컬 스크린샷과 대시보드 검토가 가능하도록 결정론적으로 구성되어 있습니다.
 
-* `THISHMIDATA`
-* `TMSTMC`
-* `tmst_dataset_config`
-* `tmst_data_type_mst`
-* `tmst_data_type`
-* `tmst_data_type_dtl`
-* `tmst_feature_mst`
-* `thisfeature`
-* `tmst_algo_mst`
-* `tmst_algo_dtl`
-* `tmst_map_algo`
-* `tmst_param_mst`
-* `tmst_map_algo_param`
-* `tmst_model_policy`
-* `tmst_model_active`
-* `thismodelrun`
-* `thisanomalyresult`
-* `thisthresholdalert`
-* `thisclassificationresult`
-* `thismodeleval`
+## 백엔드 API
 
-The seed data is deterministic enough for repeatable local screenshots and dashboard review.
+Spring Boot 백엔드: `apps/api`
 
-## Backend API
+기본 설정:
 
-The Spring Boot backend lives in:
+- Java 17 / Spring Boot 3.x
+- 서버 포트: `8090`
+- MongoDB URI: `${MONGODB_URI:mongodb://localhost:27017/ml_studio_demo}`
+- CORS origin: `http://localhost:5173`
 
-```text
-apps/api
-```
-
-Configuration defaults:
-
-* Java 17
-* Spring Boot 3.x
-* Server port: `8090`
-* MongoDB URI: `${MONGODB_URI:mongodb://localhost:27017/ml_studio_demo}`
-* CORS origin: `http://localhost:5173`
-
-Run:
+실행 / 빌드:
 
 ```powershell
 cd apps\api
 .\gradlew.bat bootRun
-```
-
-Build:
-
-```powershell
-cd apps\api
 .\gradlew.bat build -x test
 ```
 
-Representative API areas:
-
-* `GET /api/health`
-* `GET /api/home/dashboard`
-* `GET /api/modeltrain/overview`
-* `GET /api/modeltrain/anomaly/runs`
-* `GET /api/modeltrain/anomaly/results`
-* `GET /api/threshold-alert/summary`
-* `GET /api/threshold-alert/list`
-* `GET /api/supervised/result/runs`
-* `GET /api/supervised/result/summary`
-* `GET /api/supervised/result/predictions`
-* `GET /api/data-exploration/datasets`
-* `GET /api/data-exploration/timeseries/fields`
-* `POST /api/data-exploration/timeseries/query`
-* `GET /api/preprocess/data-sources`
-* `GET /api/preprocess/raw-preview`
-* `GET /api/preprocess/features`
-* `GET /api/algorithms/selection`
-* `GET /api/algorithm/params`
-* `GET /api/equipment/master`
-
-## AI Server
-
-The FastAPI AI server lives in:
+대표 API 엔드포인트:
 
 ```text
-apps/ai-server
+GET  /api/health
+GET  /api/home/dashboard
+GET  /api/modeltrain/overview
+GET  /api/modeltrain/anomaly/runs
+GET  /api/modeltrain/anomaly/results
+GET  /api/threshold-alert/summary
+GET  /api/threshold-alert/list
+GET  /api/supervised/result/runs
+GET  /api/supervised/result/summary
+GET  /api/supervised/result/predictions
+GET  /api/data-exploration/datasets
+GET  /api/data-exploration/timeseries/fields
+POST /api/data-exploration/timeseries/query
+GET  /api/preprocess/data-sources
+GET  /api/preprocess/raw-preview
+GET  /api/preprocess/features
+GET  /api/algorithms/selection
+GET  /api/algorithm/params
+GET  /api/equipment/master
 ```
 
-It provides demo-safe model execution endpoints for the synthetic pipeline:
+## AI 서버
 
-* Isolation Forest
-* AutoEncoder
-* Random Forest
+FastAPI AI 서버: `apps/ai-server`
 
-Run:
+합성 파이프라인을 위한 데모 안전 모델 실행 엔드포인트(Isolation Forest, AutoEncoder, Random Forest)를 제공합니다.
+
+실행 / 컴파일 체크:
 
 ```powershell
 cd apps\ai-server
 python -m pip install -r requirements.txt
 python -m uvicorn main:app --host 0.0.0.0 --port 8001
-```
-
-Compile check:
-
-```powershell
-cd apps\ai-server
 python -m compileall .
 ```
 
-Representative AI server endpoints:
-
-* `GET /health`
-* `POST /api/model/execute/isolation-forest`
-* `POST /api/model/execute/autoencoder`
-* `POST /api/model/execute/random-forest`
-
-The AI server is used for local demonstration only. It does not include production model files, production training data, or customer-specific model parameters.
-
-## Frontend
-
-The React frontend lives in:
+대표 엔드포인트:
 
 ```text
-apps/web
+GET  /health
+POST /api/model/execute/isolation-forest
+POST /api/model/execute/autoencoder
+POST /api/model/execute/random-forest
 ```
 
-Run:
+AI 서버는 로컬 시연 전용입니다. 운영 모델 파일, 운영 학습 데이터, 고객별 모델 파라미터를 포함하지 않습니다.
+
+## 프론트엔드
+
+React 프론트엔드: `apps/web`
+
+실행 / 빌드:
 
 ```powershell
 cd apps\web
 npm install
 npm run dev
-```
-
-Build:
-
-```powershell
-cd apps\web
 npm run build
 ```
 
-The frontend includes a demo-safe login flow for portfolio review. It does not provide production authentication, customer accounts, user administration, or real authorization logic.
+포트폴리오 검토용 데모 안전 로그인 플로를 포함합니다. 운영 인증, 고객 계정, 사용자 관리, 실제 인가 로직은 제공하지 않습니다.
 
-Key frontend screens:
+주요 화면: Home Dashboard, AI Overview, Preprocess / Feature Engineering, Algorithm Selection, Model Training / Run Policy, Anomaly Detection Result, Threshold Alert, Supervised Learning Result, Time-Series Data Exploration.
 
-* Home Dashboard
-* AI Overview
-* Preprocess / Feature Engineering
-* Algorithm Selection
-* Model Training / Run Policy
-* Anomaly Detection Result
-* Threshold Alert
-* Supervised Learning Result
-* Time-Series Data Exploration
-
-## Repository Structure
+## 저장소 구조
 
 ```text
 ml-studio-insight-view-demo
 ├─ apps
-│  ├─ web
-│  ├─ api
-│  └─ ai-server
+│  ├─ web          # React + Vite 대시보드
+│  ├─ api          # Spring Boot 데모 API
+│  └─ ai-server    # FastAPI 데모 모델 실행 서비스
 ├─ demo-data
-│  └─ seed
-├─ docs
-├─ screenshots
-├─ scripts
+│  └─ seed         # 합성 JSON 시드 데이터
+├─ docs            # 아키텍처, API, 스키마, 데이터 고지, 보안, 케이스 스터디
+├─ screenshots     # README용 공개 합성 데모 스크린샷
+├─ scripts         # 시드 로더 및 공개 안전 스캐너
 ├─ docker-compose.yml
 └─ README.md
 ```
 
-| Path                 | Description                                                                |
-| -------------------- | -------------------------------------------------------------------------- |
-| `apps/web`           | React + Vite dashboard                                                     |
-| `apps/api`           | Spring Boot demo API                                                       |
-| `apps/ai-server`     | FastAPI demo model execution service                                       |
-| `demo-data/seed`     | Synthetic JSON seed data                                                   |
-| `docs`               | Architecture, API, schema, data notice, security, and case study documents |
-| `screenshots`        | Public synthetic demo screenshots used in README                           |
-| `scripts`            | Seed loader and public safety scanner                                      |
-| `docker-compose.yml` | Local demo stack                                                           |
-
-## Validation
-
-Run the public safety scan:
+## 검증
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts\scan-public-safety.ps1
+powershell -ExecutionPolicy Bypass -File scripts\scan-public-safety.ps1   # 공개 안전 스캔
+python scripts\seed-demo-data.py --dry-run                                # 시드 dry-run
 ```
 
-Run frontend build:
+프론트엔드/백엔드/AI 서버 빌드 검증은 위 각 섹션의 빌드 명령을 사용합니다.
 
-```powershell
-cd apps\web
-npm run build
-```
+## 보안 및 데이터 정책
 
-Run backend build:
+이 저장소는 다음을 의도적으로 제외합니다: 운영 엔드포인트, 비공개 DB URI, 비공개 접근 자료, 실제 고객·시설명, 실제 설비 ID, 실제 LOT·부품, 실제 공정 레코드, 런타임 로그, 모델 아티팩트, 배포 이력, 비공개 저장소 히스토리.
 
-```powershell
-cd apps\api
-.\gradlew.bat build -x test
-```
+`.env.example`은 localhost 전용 더미 값만 포함합니다. 운영 `.env` 파일, DB 덤프, 로그, 고객 스크린샷, 실제 모델 아티팩트, 운영 구성 파일을 추가하지 마십시오.
 
-Run AI server compile check:
+합성 데모 데이터는 `demo-data/seed`에만, 공개 합성 스크린샷은 `screenshots`에만 둡니다.
 
-```powershell
-cd apps\ai-server
-python -m compileall .
-```
+상세: `docs/SECURITY.md` · `docs/DATA_NOTICE.md`
 
-Run seed dry-run:
+## 문서
 
-```powershell
-python scripts\seed-demo-data.py --dry-run
-```
+| 문서 | 설명 |
+| --- | --- |
+| [Architecture](docs/ARCHITECTURE.md) | 시스템 아키텍처 및 데이터 흐름 |
+| [API Reference](docs/API.md) | 백엔드 API 엔드포인트 및 응답 형식 |
+| [Data Schema](docs/DATA_SCHEMA.md) | MongoDB 데모 스키마 및 컬렉션 구조 |
+| [Security Notice](docs/SECURITY.md) | 보안, 익명화, 공개 정책 |
+| [Data Notice](docs/DATA_NOTICE.md) | 합성 데이터 및 데이터 처리 고지 |
+| [Case Study](docs/CASE_STUDY_ML_STUDIO.md) | 익명화된 ML Studio / Insight View 케이스 스터디 |
+| [Reuse Candidates](docs/REUSE_CANDIDATES.md) | 재사용 가능 모듈 및 확장 후보 |
 
-## Security And Data Policy
+## 공개 데모 관계
 
-This repository intentionally excludes:
+이 저장소는 공개 합성 재구성 버전입니다. 제조 ML 분석 플랫폼의 핵심 엔지니어링 개념을 보여주되, 비공개 구현 세부를 데모 안전 데이터, 로컬 런타임 기본값, 공개 문서로 대체했습니다.
 
-* Production endpoints
-* Private database URI values
-* Private access material
-* Real customer or facility names
-* Real equipment IDs
-* Real lots or parts
-* Real process records
-* Runtime logs
-* Model artifacts
-* Deployment history
-* Private repository history
-
-`.env.example` contains localhost-only dummy values.
-
-Do not add production `.env` files, database dumps, logs, customer screenshots, real model artifacts, or production configuration files.
-
-Use only synthetic demo data in:
+목표는 다음 엔지니어링 워크플로를 보여주는 것입니다:
 
 ```text
-demo-data/seed
+원천 제조 데이터
+→ 데이터 탐색
+→ 전처리 / 필터링
+→ 피처 엔지니어링
+→ 알고리즘 선택
+→ 모델 실행
+→ 이상 탐지 결과
+→ 임계값 / 지도학습 결과 검토
+→ AI 운영 대시보드
 ```
 
-Use only public synthetic screenshots in:
-
-```text
-screenshots
-```
-
-See:
-
-* `docs/SECURITY.md`
-* `docs/DATA_NOTICE.md`
-
-## Learning / Study Notes
-
-This repository also documents a practical learning process around manufacturing AI.
-
-The key study areas were:
-
-* How to identify meaningful manufacturing variables from raw process data
-* How to filter process records by dataset, equipment, time range, and sensor field
-* How to convert raw records into feature-ready structures
-* How to compare unsupervised anomaly detection and supervised classification workflows
-* How to present AI outputs as field-readable dashboards rather than raw model results
-* How to separate public demo data from private production data
-* How to design a portfolio-safe synthetic version of a deployed AI platform
-
-The purpose of this repository is to show both implementation and learning progression: understanding manufacturing data, building an AI analysis workflow, and presenting the results through a web-based system.
-
-## Documentation
-
-| Document | Description |
-|---|---|
-| [Architecture](docs/ARCHITECTURE.md) | System architecture and data flow overview |
-| [API Reference](docs/API.md) | Backend API endpoints and response format |
-| [Data Schema](docs/DATA_SCHEMA.md) | MongoDB demo schema and collection structure |
-| [Security Notice](docs/SECURITY.md) | Security, anonymization, and public release policy |
-| [Data Notice](docs/DATA_NOTICE.md) | Synthetic data and data handling notice |
-| [Case Study](docs/CASE_STUDY_ML_STUDIO.md) | Anonymized ML Studio / Insight View case study |
-| [Reuse Candidates](docs/REUSE_CANDIDATES.md) | Reusable modules and extension candidates |
-
-## Public Demo Relationship
-
-This repository is a public synthetic rebuild. It demonstrates the main engineering concepts of a manufacturing ML analytics platform while replacing private implementation details with demo-safe data, local runtime defaults, and public documentation.
-
-The goal is to show the engineering workflow:
-
-```text
-Raw Manufacturing Data
-→ Data Exploration
-→ Preprocessing / Filtering
-→ Feature Engineering
-→ Algorithm Selection
-→ Model Run
-→ Anomaly Detection Result
-→ Threshold / Supervised Result Review
-→ AI Operation Dashboard
-```
-
-It should be reviewed as a portfolio demo, not as a production deployment package.
+운영 배포 패키지가 아니라 포트폴리오 데모로 검토해 주십시오.
