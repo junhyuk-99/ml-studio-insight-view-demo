@@ -565,8 +565,6 @@ The purpose of this repository is to show both implementation and learning progr
 
 ## Documentation
 
-## Documentation
-
 | Document | Description |
 |---|---|
 | [Architecture](docs/ARCHITECTURE.md) | System architecture and data flow overview |
